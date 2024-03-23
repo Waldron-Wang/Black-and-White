@@ -1,0 +1,4 @@
+repository "2D URP animation@Waldron_Wang@cloud"
+  path "/"
+    br "/main"
+    co "/main"
