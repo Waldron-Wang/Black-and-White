@@ -10,20 +10,24 @@
 下面的关卡框架都是结合了目前已有的资源做出的
 ## 关卡主题
 以下是大致的框架
-### [山谷](background/draft/scene1.png)（启程与探索）
+### 山谷（启程与探索）
+[山谷](https://github.com/Waldron-Wang/Black-and-White/background/draft/scene1.png)
 主题：山谷作为游戏的第一个关卡，象征着Aeon（或Black）的启程和探索之旅的开始。
 设计元素：简单的地形，横版卷轴，宽阔的视野与峭壁相结合的地形，既有开阔的空间感，也有探索的隐秘角落。山谷可以是相对和平的区域，有着鲜亮的色彩和充满活力的自然元素。山谷中偶尔可见受到混沌之心轻微影响的植物或动物，展现出异化的初级形态。
-### [雪地树林](background/draft/scene2.png)隔离与挑战）
+### 雪地森林（隔离与挑战）
+[雪地树林](https://github.com/Waldron-Wang/Black-and-White/background/draft/scene2.png)
 主题：雪地树林可以代表隔离和孤独，反映Black从城墙外的世界开始他的真正挑战。
 设计元素：密林覆盖的雪地，体现出隔离和挑战的氛围。可以设计密集的树林和覆雪的地面，增加行进的困难。树木间隐约可见受混沌之心影响的怪异生物的踪迹。增加与寒冷环境相关的挑战（待定），如滑冰、深雪减速等。引入新的敌人类型，如能在雪地中迅速移动的怪物，以及利用环境攻击玩家的陷阱。
-### [神秘森林](background/draft/scene3.png)（迷惑与自我探索）
+### 神秘森林（迷惑与自我探索）
+[神秘森林](https://github.com/Waldron-Wang/Black-and-White/background/draft/scene3.png)
 主题：神秘森林可以充满未知和神秘，象征着Black和White内在冲突的加剧。森林深处隐藏着关于混沌之心和Aeon身世的线索。
 设计元素：利用平台跳跃发展垂直空间，利用迷宫式的树林布局增加探索难度，设置难以预测的环境变化和幻觉，迫使玩家不断做出选择。可以引入内心对话或决策点，影响后续游戏进展。
-### 洞穴[1](background/draft/scene4.1.png)[2](background/draft/scene4.2.png)[3](background/draft/scene4.3.png)（深入未知与面对恐惧）
+### 洞穴（深入未知与面对恐惧）
+洞穴[1](https://github.com/Waldron-Wang/Black-and-White/background/draft/scene4.1.png)  [2](https://github.com/Waldron-Wang/Black-and-White/background/draft/scene4.2.png)  [3](https://github.com/Waldron-Wang/Black-and-White/background/draft/scene4.3.png)
 主题：洞穴作为通往混沌之心核心的路径，象征着深入未知的勇气和面对内心恐惧的决心。这个关卡可以是游戏中最具挑战性的部分。
 设计元素：设计为地牢关卡。使用暗色调和仅有的光源来创造一种压抑和不安的氛围。洞穴内部布满奇形怪状的岩石和结晶，某些区域有被混沌之力异化的标志。
 ### 第五关（决战与选择）
-未使用素材[1](background/draft/unused1.png)[2](background/draft/unused2.png)[3](background/draft/unused3.png)
+未使用素材[1](https://github.com/Waldron-Wang/Black-and-White/background/draft/unused1.png)  [2](https://github.com/Waldron-Wang/Black-and-White/background/draft/unused2.png)  [3](https://github.com/Waldron-Wang/Black-and-White/background/draft/unused3.png)
 ## 本次会议讨论要点
 1.具体化每个关卡的主题
 2.环境叙事：使用环境细节来揭示游戏世界的背景故事和秘密，如被遗弃的营地、神秘的符号等
