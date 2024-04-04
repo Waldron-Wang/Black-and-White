@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,9 +101,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 600
-        width: 100
-        height: 100
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 356d9e6eaed984dcc9b4c0ab42d3008c
-      internalID: -1545095483
+      spriteID: afafb2020dd7949c39aa65e5f0348caf
+      internalID: 2066936026
       vertices: []
       indices: 
       edges: []
@@ -121,10 +121,10 @@ TextureImporter:
       name: jump_roll_1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 600
-        width: 100
-        height: 100
+        x: 200
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c86c25ec805a477f84609dc1d7d9ca2
-      internalID: -2109860786
+      spriteID: 4b02b7f95d472400f8248ae8b9177b63
+      internalID: 1916543505
       vertices: []
       indices: 
       edges: []
@@ -142,10 +142,10 @@ TextureImporter:
       name: jump_roll_2
       rect:
         serializedVersion: 2
-        x: 200
-        y: 600
-        width: 100
-        height: 100
+        x: 400
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc927c0261cfe43c7b09cf9d6fa829c6
-      internalID: 587458050
+      spriteID: 031fa069c937e48c1b57713fc6e42913
+      internalID: 1365116165
       vertices: []
       indices: 
       edges: []
@@ -163,10 +163,10 @@ TextureImporter:
       name: jump_roll_3
       rect:
         serializedVersion: 2
-        x: 300
-        y: 600
-        width: 100
-        height: 100
+        x: 600
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b41d9de25477444c6b444876ce441fad
-      internalID: -754568888
+      spriteID: c818e298d3d02426aa7b0405327ce555
+      internalID: -892885640
       vertices: []
       indices: 
       edges: []
@@ -184,10 +184,10 @@ TextureImporter:
       name: jump_roll_4
       rect:
         serializedVersion: 2
-        x: 400
-        y: 600
-        width: 100
-        height: 100
+        x: 800
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 709a584c54c6b42178b254b8a191691b
-      internalID: -1095460329
+      spriteID: 177ef37368d44455c958653561a87c4f
+      internalID: 958092433
       vertices: []
       indices: 
       edges: []
@@ -205,10 +205,10 @@ TextureImporter:
       name: jump_roll_5
       rect:
         serializedVersion: 2
-        x: 500
-        y: 600
-        width: 100
-        height: 100
+        x: 1000
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8155d114bcfb843068cf742ca042fcca
-      internalID: 248790679
+      spriteID: 5b4e1dae0580a4b42846ea601a9e3daa
+      internalID: 27040130
       vertices: []
       indices: 
       edges: []
@@ -226,10 +226,10 @@ TextureImporter:
       name: jump_roll_6
       rect:
         serializedVersion: 2
-        x: 600
-        y: 600
-        width: 100
-        height: 100
+        x: 1200
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,8 +237,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c690f227f3ce54a60ac0926d0099b834
-      internalID: -371010533
+      spriteID: f8cf97b81caf34958b7b0abc0a565a2d
+      internalID: 1343832474
       vertices: []
       indices: 
       edges: []
@@ -248,9 +248,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 500
-        width: 100
-        height: 100
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,8 +258,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 318e66d040259496b82b65ccf4ab6264
-      internalID: 1961812579
+      spriteID: 6eddfa787d8784d28b56e505b2b8c3a4
+      internalID: 1715870418
       vertices: []
       indices: 
       edges: []
@@ -268,10 +268,10 @@ TextureImporter:
       name: jump_roll_8
       rect:
         serializedVersion: 2
-        x: 100
-        y: 500
-        width: 100
-        height: 100
+        x: 200
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80e8214dc3ebe4836aa7b7387ce8e188
-      internalID: 709397693
+      spriteID: 8bbf21ebb642e4a17bd1cb0069655be1
+      internalID: -1361085258
       vertices: []
       indices: 
       edges: []
@@ -289,10 +289,10 @@ TextureImporter:
       name: jump_roll_9
       rect:
         serializedVersion: 2
-        x: 200
-        y: 500
-        width: 100
-        height: 100
+        x: 400
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,8 +300,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b786d9a61e93b4ebea316c4fca90011e
-      internalID: -423918108
+      spriteID: 38dcdd8b41a9840498f98fa83baee432
+      internalID: -1246097995
       vertices: []
       indices: 
       edges: []
@@ -310,10 +310,10 @@ TextureImporter:
       name: jump_roll_10
       rect:
         serializedVersion: 2
-        x: 300
-        y: 500
-        width: 100
-        height: 100
+        x: 600
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,8 +321,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abaf84d6fab624280ba18933630cafae
-      internalID: 494140099
+      spriteID: 99e098e990d8348a696fad74bed68b9c
+      internalID: -39295447
       vertices: []
       indices: 
       edges: []
@@ -331,10 +331,10 @@ TextureImporter:
       name: jump_roll_11
       rect:
         serializedVersion: 2
-        x: 400
-        y: 500
-        width: 100
-        height: 100
+        x: 800
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,8 +342,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fa7957780eeb4a91a0246d6bb8ede9d
-      internalID: 1213131023
+      spriteID: 0790076564490404c8012adf0fcf88f9
+      internalID: 1577179834
       vertices: []
       indices: 
       edges: []
@@ -352,10 +352,10 @@ TextureImporter:
       name: jump_roll_12
       rect:
         serializedVersion: 2
-        x: 500
-        y: 500
-        width: 100
-        height: 100
+        x: 1000
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,8 +363,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47146798b796b48f0bc71adbda7aa27d
-      internalID: 983967466
+      spriteID: 03f3a2f5fb0c6472b83524731924c332
+      internalID: 1278412153
       vertices: []
       indices: 
       edges: []
@@ -373,10 +373,10 @@ TextureImporter:
       name: jump_roll_13
       rect:
         serializedVersion: 2
-        x: 600
-        y: 500
-        width: 100
-        height: 100
+        x: 1200
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -384,8 +384,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06bb9c1f39a3249bca53c89e31b5b4d8
-      internalID: 933008428
+      spriteID: aa260d0b3233a4603ad47bc1c9179b33
+      internalID: 1167216970
       vertices: []
       indices: 
       edges: []
@@ -395,9 +395,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
-        width: 100
-        height: 100
+        y: 800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,8 +405,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48571450fe0a1445d9ad4d45bf553fff
-      internalID: 257204321
+      spriteID: 555e000e84aa44ea7918f486684cc21b
+      internalID: -229164244
       vertices: []
       indices: 
       edges: []
@@ -415,10 +415,10 @@ TextureImporter:
       name: jump_roll_15
       rect:
         serializedVersion: 2
-        x: 100
-        y: 400
-        width: 100
-        height: 100
+        x: 200
+        y: 800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,8 +426,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83dcba5e1ac6d43e28374b221bbb2978
-      internalID: 2021683914
+      spriteID: dfcca927c727a4fd79aa946fb24da1e5
+      internalID: -184974763
       vertices: []
       indices: 
       edges: []
@@ -436,10 +436,10 @@ TextureImporter:
       name: jump_roll_16
       rect:
         serializedVersion: 2
-        x: 200
-        y: 400
-        width: 100
-        height: 100
+        x: 400
+        y: 800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,8 +447,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a2415475a80f490d8a881e073f42c3b
-      internalID: -404106990
+      spriteID: ba78480d98242404db901267e76878f9
+      internalID: -174296247
       vertices: []
       indices: 
       edges: []
@@ -457,10 +457,10 @@ TextureImporter:
       name: jump_roll_17
       rect:
         serializedVersion: 2
-        x: 300
-        y: 400
-        width: 100
-        height: 100
+        x: 600
+        y: 800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -468,8 +468,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01ba12cd4002549d0a040d3c0d502b54
-      internalID: -943552572
+      spriteID: a7a13533e84f04e41b9ffceaed306045
+      internalID: 1740881479
       vertices: []
       indices: 
       edges: []
@@ -478,10 +478,10 @@ TextureImporter:
       name: jump_roll_18
       rect:
         serializedVersion: 2
-        x: 400
-        y: 400
-        width: 100
-        height: 100
+        x: 800
+        y: 800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -489,8 +489,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3020da070fb784873a60adca806597cd
-      internalID: -1287927136
+      spriteID: 58afe93e669cc4e4885843837ae8836f
+      internalID: 1240617584
       vertices: []
       indices: 
       edges: []
@@ -499,10 +499,10 @@ TextureImporter:
       name: jump_roll_19
       rect:
         serializedVersion: 2
-        x: 500
-        y: 400
-        width: 100
-        height: 100
+        x: 1000
+        y: 800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -510,8 +510,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02f7815db69d44e3c8ab2b39a66470a8
-      internalID: -26428787
+      spriteID: 52c0af01c08154762bcc4fc7e21b9e6d
+      internalID: 1395414737
       vertices: []
       indices: 
       edges: []
@@ -520,10 +520,10 @@ TextureImporter:
       name: jump_roll_20
       rect:
         serializedVersion: 2
-        x: 600
-        y: 400
-        width: 100
-        height: 100
+        x: 1200
+        y: 800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -531,8 +531,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 028f07cb0ff1442b9a296531993d411f
-      internalID: -177105540
+      spriteID: 1d3769940dd454936bdc61e15b951adf
+      internalID: 1304832230
       vertices: []
       indices: 
       edges: []
@@ -542,9 +542,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 300
-        width: 100
-        height: 100
+        y: 600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -552,8 +552,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a4961990e51c4e0f8ca312ae7a893f8
-      internalID: 466497277
+      spriteID: 42763ead7443f4e30aeeff6db2a3de11
+      internalID: 425108416
       vertices: []
       indices: 
       edges: []
@@ -562,10 +562,10 @@ TextureImporter:
       name: jump_roll_22
       rect:
         serializedVersion: 2
-        x: 100
-        y: 300
-        width: 100
-        height: 100
+        x: 200
+        y: 600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -573,8 +573,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89e31bd7e9cdf49428671d90e48821f1
-      internalID: -707465166
+      spriteID: 1e2d3d720c7024520bf70f1a3eabd30f
+      internalID: -614744506
       vertices: []
       indices: 
       edges: []
@@ -583,10 +583,10 @@ TextureImporter:
       name: jump_roll_23
       rect:
         serializedVersion: 2
-        x: 200
-        y: 300
-        width: 100
-        height: 100
+        x: 400
+        y: 600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -594,8 +594,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c823193ba2adb455c8fceadafdd9ffd2
-      internalID: 2078524757
+      spriteID: 97120e0d8588647f68398428e613e254
+      internalID: -238573123
       vertices: []
       indices: 
       edges: []
@@ -604,10 +604,10 @@ TextureImporter:
       name: jump_roll_24
       rect:
         serializedVersion: 2
-        x: 300
-        y: 300
-        width: 100
-        height: 100
+        x: 600
+        y: 600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -615,8 +615,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffad1f9313db841f5bd34b2a29937653
-      internalID: 814073905
+      spriteID: 7ff214005af234cdc84a56e4a0e09f18
+      internalID: 1731345304
       vertices: []
       indices: 
       edges: []
@@ -625,10 +625,10 @@ TextureImporter:
       name: jump_roll_25
       rect:
         serializedVersion: 2
-        x: 400
-        y: 300
-        width: 100
-        height: 100
+        x: 800
+        y: 600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -636,8 +636,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30a3c724b53ea49d8846ee06d3eebecd
-      internalID: -192270775
+      spriteID: 7c7c82114bd844ae2bf1c11bf67ab020
+      internalID: 836448754
       vertices: []
       indices: 
       edges: []
@@ -646,10 +646,10 @@ TextureImporter:
       name: jump_roll_26
       rect:
         serializedVersion: 2
-        x: 500
-        y: 300
-        width: 100
-        height: 100
+        x: 1000
+        y: 600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -657,8 +657,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3d125082dbf44677bb851fbead0f96a
-      internalID: 2081421209
+      spriteID: 6db07b84a55094e7bbb16161960a6c95
+      internalID: 863693610
       vertices: []
       indices: 
       edges: []
@@ -667,10 +667,10 @@ TextureImporter:
       name: jump_roll_27
       rect:
         serializedVersion: 2
-        x: 600
-        y: 300
-        width: 100
-        height: 100
+        x: 1200
+        y: 600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -678,8 +678,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba8801f9b3c6d44639624995824ddddd
-      internalID: -2038610941
+      spriteID: bef2eebee675848debead1424129e462
+      internalID: -216733693
       vertices: []
       indices: 
       edges: []
@@ -689,9 +689,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 200
-        width: 100
-        height: 100
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -699,8 +699,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7f7f28458cd445c0885daa7ce2edaa7
-      internalID: -371091248
+      spriteID: 40d642e0dea594f3b86653a52eb628cc
+      internalID: 56122196
       vertices: []
       indices: 
       edges: []
@@ -709,10 +709,10 @@ TextureImporter:
       name: jump_roll_29
       rect:
         serializedVersion: 2
-        x: 100
-        y: 200
-        width: 100
-        height: 100
+        x: 200
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -720,8 +720,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b008aa763c79c434482bcd0139db2158
-      internalID: 2069928811
+      spriteID: 9c7eaa99d543642519dda1bbdff505e0
+      internalID: -1435447816
       vertices: []
       indices: 
       edges: []
@@ -730,10 +730,10 @@ TextureImporter:
       name: jump_roll_30
       rect:
         serializedVersion: 2
-        x: 200
-        y: 200
-        width: 100
-        height: 100
+        x: 400
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -741,8 +741,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 819bc93e5b6354f94815e35c51843f11
-      internalID: 1825986780
+      spriteID: fd2697e4aaf144e75b79633ec2fe2c49
+      internalID: 868546556
       vertices: []
       indices: 
       edges: []
@@ -751,10 +751,10 @@ TextureImporter:
       name: jump_roll_31
       rect:
         serializedVersion: 2
-        x: 300
-        y: 200
-        width: 100
-        height: 100
+        x: 600
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -762,8 +762,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c183b8f4fe7b45e4ab5927a7d126867
-      internalID: 338881026
+      spriteID: 451115e2c387543bbb6cc94fb0b3cc0e
+      internalID: -535009076
       vertices: []
       indices: 
       edges: []
@@ -772,10 +772,10 @@ TextureImporter:
       name: jump_roll_32
       rect:
         serializedVersion: 2
-        x: 400
-        y: 200
-        width: 100
-        height: 100
+        x: 800
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -783,8 +783,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41e61c3d1c4664bb0b481fb98ba37370
-      internalID: -261638331
+      spriteID: a504462084c3f403a835db01ec498fc2
+      internalID: -187746954
       vertices: []
       indices: 
       edges: []
@@ -793,10 +793,10 @@ TextureImporter:
       name: jump_roll_33
       rect:
         serializedVersion: 2
-        x: 500
-        y: 200
-        width: 100
-        height: 100
+        x: 1000
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -804,8 +804,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a25236515bee84ec78b371cadca45ea3
-      internalID: 2069571953
+      spriteID: ecf3f7ee1e1dc4084bbb1d4290a6859b
+      internalID: 180851354
       vertices: []
       indices: 
       edges: []
@@ -814,10 +814,10 @@ TextureImporter:
       name: jump_roll_34
       rect:
         serializedVersion: 2
-        x: 600
-        y: 200
-        width: 100
-        height: 100
+        x: 1200
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -825,8 +825,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa19fd0dc4abb4dafb1ebf78f1111e1c
-      internalID: -398134006
+      spriteID: e04828690dc9949139e2ca820cbf155f
+      internalID: -463140391
       vertices: []
       indices: 
       edges: []
@@ -836,9 +836,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 100
-        width: 100
-        height: 100
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -846,8 +846,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f099002c37b484b7da45f40db0546a8a
-      internalID: -420723022
+      spriteID: 2b1f6b42c7f89413c883c591726d07cb
+      internalID: 994439917
       vertices: []
       indices: 
       edges: []
@@ -856,10 +856,10 @@ TextureImporter:
       name: jump_roll_36
       rect:
         serializedVersion: 2
-        x: 100
-        y: 100
-        width: 100
-        height: 100
+        x: 200
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -867,8 +867,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e21a9933e7484978a92030e53927521
-      internalID: -714270994
+      spriteID: fadaaff9256d94bf599f4a9fd238532a
+      internalID: 328546917
       vertices: []
       indices: 
       edges: []
@@ -877,10 +877,10 @@ TextureImporter:
       name: jump_roll_37
       rect:
         serializedVersion: 2
-        x: 200
-        y: 100
-        width: 100
-        height: 100
+        x: 400
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -888,8 +888,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f11aac127bf64101ae83c5e4e1f1376
-      internalID: 1858085595
+      spriteID: 2bee65ac4744c468fbf129113435b3a1
+      internalID: 924159430
       vertices: []
       indices: 
       edges: []
@@ -898,10 +898,10 @@ TextureImporter:
       name: jump_roll_38
       rect:
         serializedVersion: 2
-        x: 300
-        y: 100
-        width: 100
-        height: 100
+        x: 600
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -909,8 +909,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e09422a86ff63420eb447b908632f1a0
-      internalID: -107402610
+      spriteID: 84a7e1bf0c314462996d4d07f8f7dcbf
+      internalID: 948920978
       vertices: []
       indices: 
       edges: []
@@ -919,10 +919,10 @@ TextureImporter:
       name: jump_roll_39
       rect:
         serializedVersion: 2
-        x: 400
-        y: 100
-        width: 100
-        height: 100
+        x: 800
+        y: 200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -930,8 +930,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72dc5ca24b50e4d2dbdbc4f2a6adb365
-      internalID: 2020411596
+      spriteID: 00dfb8a1682214c11b9a2b8af4605f91
+      internalID: -1386923588
       vertices: []
       indices: 
       edges: []
@@ -947,46 +947,46 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      jump_roll_0: -1545095483
-      jump_roll_1: -2109860786
-      jump_roll_10: 494140099
-      jump_roll_11: 1213131023
-      jump_roll_12: 983967466
-      jump_roll_13: 933008428
-      jump_roll_14: 257204321
-      jump_roll_15: 2021683914
-      jump_roll_16: -404106990
-      jump_roll_17: -943552572
-      jump_roll_18: -1287927136
-      jump_roll_19: -26428787
-      jump_roll_2: 587458050
-      jump_roll_20: -177105540
-      jump_roll_21: 466497277
-      jump_roll_22: -707465166
-      jump_roll_23: 2078524757
-      jump_roll_24: 814073905
-      jump_roll_25: -192270775
-      jump_roll_26: 2081421209
-      jump_roll_27: -2038610941
-      jump_roll_28: -371091248
-      jump_roll_29: 2069928811
-      jump_roll_3: -754568888
-      jump_roll_30: 1825986780
-      jump_roll_31: 338881026
-      jump_roll_32: -261638331
-      jump_roll_33: 2069571953
-      jump_roll_34: -398134006
-      jump_roll_35: -420723022
-      jump_roll_36: -714270994
-      jump_roll_37: 1858085595
-      jump_roll_38: -107402610
-      jump_roll_39: 2020411596
-      jump_roll_4: -1095460329
-      jump_roll_5: 248790679
-      jump_roll_6: -371010533
-      jump_roll_7: 1961812579
-      jump_roll_8: 709397693
-      jump_roll_9: -423918108
+      jump_roll_0: 2066936026
+      jump_roll_1: 1916543505
+      jump_roll_10: -39295447
+      jump_roll_11: 1577179834
+      jump_roll_12: 1278412153
+      jump_roll_13: 1167216970
+      jump_roll_14: -229164244
+      jump_roll_15: -184974763
+      jump_roll_16: -174296247
+      jump_roll_17: 1740881479
+      jump_roll_18: 1240617584
+      jump_roll_19: 1395414737
+      jump_roll_2: 1365116165
+      jump_roll_20: 1304832230
+      jump_roll_21: 425108416
+      jump_roll_22: -614744506
+      jump_roll_23: -238573123
+      jump_roll_24: 1731345304
+      jump_roll_25: 836448754
+      jump_roll_26: 863693610
+      jump_roll_27: -216733693
+      jump_roll_28: 56122196
+      jump_roll_29: -1435447816
+      jump_roll_3: -892885640
+      jump_roll_30: 868546556
+      jump_roll_31: -535009076
+      jump_roll_32: -187746954
+      jump_roll_33: 180851354
+      jump_roll_34: -463140391
+      jump_roll_35: 994439917
+      jump_roll_36: 328546917
+      jump_roll_37: 924159430
+      jump_roll_38: 948920978
+      jump_roll_39: -1386923588
+      jump_roll_4: 958092433
+      jump_roll_5: 27040130
+      jump_roll_6: 1343832474
+      jump_roll_7: 1715870418
+      jump_roll_8: -1361085258
+      jump_roll_9: -1246097995
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
