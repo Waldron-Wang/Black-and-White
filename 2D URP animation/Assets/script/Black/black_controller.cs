@@ -6,12 +6,15 @@ public class black_controller : MonoBehaviour
 {
     Rigidbody2D rb_black;
     Animator animator_black;
-    SpriteRenderer spriteRenderer_balck;
 
-    [SerializeField] float run_speed;   //移动的速度velocity
+    [SerializeField] float run_speed;    //移动的速度velocity
     [SerializeField] float walk_speed;   //移动的速度velocity
     [SerializeField] float jump_force_1; //跳跃的力度force
     [SerializeField] float jump_force_2; //二段跳的力度froce
+    [SerializeField] float dodge_time;       //闪避持续时间
+    [SerializeField] float dodge_cool_time;  //闪避冷却时间
+    [SerializeField] float dodge_power;
+    [SerializeField] float dodge_gravity;
     float move_horizontal;
     //检测玩家是否有水平移动输入
     int jump_count;
@@ -23,6 +26,9 @@ public class black_controller : MonoBehaviour
     bool move_vertical;
     //检测玩家是否有跳跃输入
     bool is_face_right;
+    bool is_dodging;
+    bool can_dodge;
+    bool dodge_input;
 
     RaycastHit2D object_being_hit;
     //这是被射线碰撞的结构体实例，包含有关碰撞的详细信息，如碰撞点的位置、碰撞点的表面法线、碰撞物体的引用
@@ -39,9 +45,11 @@ public class black_controller : MonoBehaviour
     {
         rb_black = gameObject.GetComponent<Rigidbody2D>();
         animator_black = gameObject.GetComponent<Animator>();
-        spriteRenderer_balck = gameObject.GetComponent<SpriteRenderer>();
 
         is_face_right = true;
+        is_dodging = false;
+        can_dodge = true;
+        dodge_input = false;
 
         jump_count = 0;
         jump_count_max = 2;
@@ -63,6 +71,8 @@ public class black_controller : MonoBehaviour
         {
             flip();
         }
+
+        animator_black.SetFloat("velocity_y", rb_black.velocity.y);
 
         ray_origin = new Vector2(transform.position.x, transform.position.y);
         if (jump_count == 0) //不用速度作为人物是否在地面的原因是人物的部分空中攻击动作是悬停在空中的
@@ -87,7 +97,11 @@ public class black_controller : MonoBehaviour
             }
             else
             {
-                jump_state = 2;
+                if (jump_state != 2)
+                {
+                    jump_state = 2;
+                }
+                
             }
         }
 
@@ -98,10 +112,20 @@ public class black_controller : MonoBehaviour
         //Input.GetButtonDown仅会在按下按键的那一帧为true，并且其更新不与物理系统同步，导致输入容易被遗漏，
         //设置一个变量储存按下按键的信息，在物理系统执行跳跃后重置为false
 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && can_dodge)
+        //此处并上can_dodge条件，使其在冷却时间内无法触发input
+        {
+            dodge_input = true;
+        }
     }
 
     private void FixedUpdate()
     {
+        if (is_dodging)
+        {
+            return;
+        }
+
         if (Input.GetKey(KeyCode.Tab) == true)
         {
             animator_black.SetBool("is_running", false);
@@ -119,6 +143,16 @@ public class black_controller : MonoBehaviour
         {
             jump();
             move_vertical = false;
+        }
+
+        if (dodge_input && can_dodge)
+        {
+            dodge_input = false;
+            StartCoroutine(dodge());
+            //animator_black.ResetTrigger("jump_trigger");
+            //animator_black.SetBool("is_running", false);
+            //animator_black.SetBool("is_walking", false);
+            animator_black.SetTrigger("dodge_trigger");
         }
     }
 
@@ -186,5 +220,25 @@ public class black_controller : MonoBehaviour
         {
             jump_count = 0;
         }
+    }
+
+    IEnumerator dodge()
+    {
+        can_dodge = false;
+        is_dodging = true;
+        float original_gravity = rb_black.gravityScale;
+        rb_black.gravityScale = dodge_gravity;
+        rb_black.velocity = new Vector3(transform.right.x * dodge_power, 0f, 0f);
+        //unity中transform.right(人物x轴在世界坐标中的朝向) forward(z axis)
+
+        yield return new WaitForSeconds(dodge_time);
+
+        is_dodging = false;
+        rb_black.velocity = new Vector3(0f, 0f, 0f);
+        rb_black.gravityScale = original_gravity;
+
+        yield return new WaitForSeconds(dodge_cool_time);
+
+        can_dodge = true;
     }
 }

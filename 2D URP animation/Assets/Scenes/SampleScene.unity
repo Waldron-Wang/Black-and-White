@@ -3306,10 +3306,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eae2fd34284a4c90918811b68884875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  run_speed: 4
-  walk_speed: 1.5
+  run_speed: 3
+  walk_speed: 1
   jump_force_1: 6
   jump_force_2: 6
+  dodge_time: 0.4
+  dodge_cool_time: 0.4
+  dodge_power: 6
+  dodge_gravity: 0.1
   ray_distance: 0.55
   ray_layer:
     serializedVersion: 2

@@ -20,7 +20,7 @@ public class sword_shield : MonoBehaviour
         
     }
 
-    void attack()
+    void attack1()
     {
 
     }
