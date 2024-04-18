@@ -7,6 +7,21 @@ public class black_controller : MonoBehaviour
     Rigidbody2D rb_black;
     Animator animator_black;
 
+    string current_state;
+    const string idle = "idle";
+    const string run = "run";
+    const string walk = "walk";
+    const string run_end = "run_end";
+    const string jump_up_1 = "jump_up_1";
+    const string jump_roll = "jump_roll";
+    const string fall = "fall";
+    const string jump_end = "jump_end";
+    const string run_jump_up_1 = "run_jump_up_1";
+    const string run_jump_roll = "run_jump_roll";
+    const string run_fall = "run_fall";
+    const string run_jump_end = "run_jump_end";
+
+
     [SerializeField] float run_speed;    //移动的速度velocity
     [SerializeField] float walk_speed;   //移动的速度velocity
     [SerializeField] float jump_force_1; //跳跃的力度force
@@ -26,6 +41,7 @@ public class black_controller : MonoBehaviour
     bool move_vertical;
     //检测玩家是否有跳跃输入
     bool is_face_right;
+    bool is_ground;
     bool is_dodging;
     bool can_dodge;
     bool dodge_input;
@@ -40,6 +56,7 @@ public class black_controller : MonoBehaviour
     //射线的长度,同时也是人物开始进入jump_state 3时的离地面的距离
     [SerializeField] LayerMask ray_layer;
     //使射线只检测30层里的碰撞ti
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +64,7 @@ public class black_controller : MonoBehaviour
         animator_black = gameObject.GetComponent<Animator>();
 
         is_face_right = true;
+        is_ground = true;
         is_dodging = false;
         can_dodge = true;
         dodge_input = false;
@@ -60,28 +78,33 @@ public class black_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //人物移动按键输入
         move_horizontal = Input.GetAxisRaw("Horizontal");
         //unity的输入系统被设置为与帧更新同步
 
+        //监测并调整人物转向
         if (move_horizontal > 0.01f && is_face_right == false)
         {
-            flip();
+            Flip();
         }
         else if (move_horizontal < -0.01f && is_face_right == true)
         {
-            flip();
+            Flip();
         }
 
         animator_black.SetFloat("velocity_y", rb_black.velocity.y);
 
+        //监测人物目前跳跃状态
         ray_origin = new Vector2(transform.position.x, transform.position.y);
         if (jump_count == 0) //不用速度作为人物是否在地面的原因是人物的部分空中攻击动作是悬停在空中的
         {
             jump_state = 0;
+            is_ground = true;
         }
         else if (rb_black.velocity.y > 0.001f)
         {
             jump_state = 1;
+            is_ground = false;
         }
         else if (rb_black.velocity.y < -0.001f)
         {
@@ -112,6 +135,7 @@ public class black_controller : MonoBehaviour
         //Input.GetButtonDown仅会在按下按键的那一帧为true，并且其更新不与物理系统同步，导致输入容易被遗漏，
         //设置一个变量储存按下按键的信息，在物理系统执行跳跃后重置为false
 
+        //闪避按键输入
         if (Input.GetKeyDown(KeyCode.LeftShift) && can_dodge)
         //此处并上can_dodge条件，使其在冷却时间内无法触发input
         {
@@ -130,33 +154,30 @@ public class black_controller : MonoBehaviour
         {
             animator_black.SetBool("is_running", false);
             //当玩家从run切换到walk时，update不会再调用run(),is_running不能被正常重置为false，导致动画出错，故添加此语句
-            walk();
+            Walk();
         }
         else
         {
             animator_black.SetBool("is_walking", false);
             //同上
-            run();
+            Run();
         }
 
         if (move_vertical)
         {
-            jump();
+            Jump();
             move_vertical = false;
         }
 
         if (dodge_input && can_dodge)
         {
             dodge_input = false;
-            StartCoroutine(dodge());
-            //animator_black.ResetTrigger("jump_trigger");
-            //animator_black.SetBool("is_running", false);
-            //animator_black.SetBool("is_walking", false);
+            StartCoroutine(Dodge());
             animator_black.SetTrigger("dodge_trigger");
         }
     }
 
-    void run()
+    void Run()
     {
         if (move_horizontal > 0.1f || move_horizontal < -0.1f)
         {
@@ -170,7 +191,7 @@ public class black_controller : MonoBehaviour
         }
     }
 
-    void walk()
+    void Walk()
     {
         if (move_horizontal > 0.1f || move_horizontal < -0.1f)
         {
@@ -184,7 +205,7 @@ public class black_controller : MonoBehaviour
         }
     }
 
-    void jump()
+    void Jump()
     {
         if (jump_count < jump_count_max)
         {
@@ -208,7 +229,7 @@ public class black_controller : MonoBehaviour
         }
     }
 
-    void flip()
+    void Flip()
     {
         is_face_right = !is_face_right;
         transform.Rotate(0, 180, 0);
@@ -222,7 +243,7 @@ public class black_controller : MonoBehaviour
         }
     }
 
-    IEnumerator dodge()
+    IEnumerator Dodge()
     {
         can_dodge = false;
         is_dodging = true;
@@ -240,5 +261,29 @@ public class black_controller : MonoBehaviour
         yield return new WaitForSeconds(dodge_cool_time);
 
         can_dodge = true;
+    }
+
+    void ChangeAnimationState(string new_state, float start_time = 0f)
+    {
+        if (new_state == current_state)
+        {
+            return;
+        }
+
+        animator_black.Play(new_state, 0, start_time);
+        current_state = new_state;
+    }
+
+    bool CanAnimationExit(string state_name, float exit_time = 1.0f)
+    {
+        if (animator_black.GetCurrentAnimatorStateInfo(0).IsName(state_name)
+            && animator_black.GetCurrentAnimatorStateInfo(0).normalizedTime > exit_time)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
