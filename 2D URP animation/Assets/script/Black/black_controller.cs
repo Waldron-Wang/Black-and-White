@@ -8,18 +8,16 @@ public class black_controller : MonoBehaviour
     Animator animator_black;
 
     string current_state;
-    const string idle = "idle";
-    const string run = "run";
-    const string walk = "walk";
-    const string run_end = "run_end";
-    const string jump_up_1 = "jump_up_1";
-    const string jump_roll = "jump_roll";
-    const string fall = "fall";
-    const string jump_end = "jump_end";
-    const string run_jump_up_1 = "run_jump_up_1";
-    const string run_jump_roll = "run_jump_roll";
-    const string run_fall = "run_fall";
-    const string run_jump_end = "run_jump_end";
+    const string animation_idle = "idle";
+    const string animation_run = "run";
+    const string animation_walk = "walk";
+    const string animation_run_end = "run_end";
+    const string animation_jump_up_1 = "jump_up_1";
+    const string animation_jump_roll = "jump_roll";
+    const string animation_fall = "fall";
+    const string animation_jump_end = "jump_end";
+    const string animation_run_jump_up_1 = "run_jump_up_1";
+    const string animation_run_jump_end = "run_jump_end";
 
 
     [SerializeField] float run_speed;    //移动的速度velocity
@@ -41,6 +39,7 @@ public class black_controller : MonoBehaviour
     bool move_vertical;
     //检测玩家是否有跳跃输入
     bool is_face_right;
+    bool is_moving_horizontal;
     bool is_ground;
     bool is_dodging;
     bool can_dodge;
@@ -96,7 +95,7 @@ public class black_controller : MonoBehaviour
 
         //监测人物目前跳跃状态
         ray_origin = new Vector2(transform.position.x, transform.position.y);
-        if (jump_count == 0) //不用速度作为人物是否在地面的原因是人物的部分空中攻击动作是悬停在空中的
+        if (jump_count == 0  && (rb_black.velocity.y < 0.001f && rb_black.velocity.y > -0.001f)) 
         {
             jump_state = 0;
             is_ground = true;
@@ -177,16 +176,76 @@ public class black_controller : MonoBehaviour
         }
     }
 
+    void AnimationSystem()
+    {
+        if (!is_moving_horizontal && is_ground && !is_dodging)
+        {
+            if (!IsAnimationPlaying(animation_fall))
+            {
+                ChangeAnimationState(animation_idle);
+            }
+        }
+
+        if (is_moving_horizontal && is_ground && !is_dodging)
+        {
+            if (!IsAnimationPlaying(animation_fall))
+            {
+                ChangeAnimationState(animation_run);
+            }
+        }
+
+        if (!is_ground && !is_dodging)
+        {
+            if (!is_moving_horizontal)
+            {
+                if(jump_count == 1 && jump_state == 1
+                    && !animator_black.GetCurrentAnimatorStateInfo(0).IsName(animation_run_jump_up_1))
+                {
+                    ChangeAnimationState(animation_jump_up_1);
+                }
+                if (jump_state == 3
+                    && !animator_black.GetCurrentAnimatorStateInfo(0).IsName(animation_run_jump_end))
+                {
+                    ChangeAnimationState(animation_jump_end);
+                }
+            }
+            else
+            {
+                if(jump_count == 1 && jump_state == 1
+                    && !animator_black.GetCurrentAnimatorStateInfo(0).IsName(animation_jump_up_1))
+                {
+                    ChangeAnimationState(animation_run_jump_up_1);
+                }
+                if (jump_state == 3
+                    && !animator_black.GetCurrentAnimatorStateInfo(0).IsName(animation_run_end))
+                {
+                    ChangeAnimationState(animation_run_jump_end);
+                }
+            }
+
+            if (jump_count == 2 && jump_state == 1)
+            {
+                ChangeAnimationState(animation_jump_roll);
+            }
+            if (jump_state == 2)
+            {
+                ChangeAnimationState(animation_fall);
+            }
+        }
+    }
+
     void Run()
     {
         if (move_horizontal > 0.1f || move_horizontal < -0.1f)
         {
             rb_black.velocity = new Vector3(move_horizontal * run_speed, rb_black.velocity.y, 0f);
+            is_moving_horizontal = true;
             animator_black.SetBool("is_running", true);
         }
         else
         {
             rb_black.velocity = new Vector3(0f, rb_black.velocity.y, 0f);
+            is_moving_horizontal = false;
             animator_black.SetBool("is_running", false);
         }
     }
@@ -196,11 +255,13 @@ public class black_controller : MonoBehaviour
         if (move_horizontal > 0.1f || move_horizontal < -0.1f)
         {
             rb_black.velocity = new Vector3(move_horizontal * walk_speed, rb_black.velocity.y, 0f);
+            is_moving_horizontal = true;
             animator_black.SetBool("is_walking", true);
         }
         else
         {
             rb_black.velocity = new Vector3(0f, rb_black.velocity.y, 0f);
+            is_moving_horizontal = false;
             animator_black.SetBool("is_walking", false);
         }
     }
@@ -274,10 +335,10 @@ public class black_controller : MonoBehaviour
         current_state = new_state;
     }
 
-    bool CanAnimationExit(string state_name, float exit_time = 1.0f)
+    bool IsAnimationPlaying(string state_name, float exit_time = 1.0f)
     {
         if (animator_black.GetCurrentAnimatorStateInfo(0).IsName(state_name)
-            && animator_black.GetCurrentAnimatorStateInfo(0).normalizedTime > exit_time)
+            && animator_black.GetCurrentAnimatorStateInfo(0).normalizedTime < exit_time)
         {
             return true;
         }
