@@ -18,6 +18,7 @@ public class black_controller : MonoBehaviour
     const string animation_jump_end = "jump_end";
     const string animation_run_jump_up_1 = "run_jump_up_1";
     const string animation_run_jump_end = "run_jump_end";
+    const string animation_dodge = "dodge";
 
 
     [SerializeField] float run_speed;    //移动的速度velocity
@@ -91,9 +92,8 @@ public class black_controller : MonoBehaviour
             Flip();
         }
 
-        animator_black.SetFloat("velocity_y", rb_black.velocity.y);
 
-        //监测人物目前跳跃状态
+        //监测人物目前跳跃状态 */
         ray_origin = new Vector2(transform.position.x, transform.position.y);
         if (jump_count == 0  && (rb_black.velocity.y < 0.001f && rb_black.velocity.y > -0.001f)) 
         {
@@ -113,7 +113,6 @@ public class black_controller : MonoBehaviour
                 if(jump_state != 3)
                 //使land_trigger仅被触发一次，防止land动画后land_trigger依然处于触发状态
                 {
-                    animator_black.SetTrigger("land_trigger");
                     jump_state = 3;
                 }
             }
@@ -140,6 +139,8 @@ public class black_controller : MonoBehaviour
         {
             dodge_input = true;
         }
+
+        AnimationController();
     }
 
     private void FixedUpdate()
@@ -151,14 +152,10 @@ public class black_controller : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Tab) == true)
         {
-            animator_black.SetBool("is_running", false);
-            //当玩家从run切换到walk时，update不会再调用run(),is_running不能被正常重置为false，导致动画出错，故添加此语句
             Walk();
         }
         else
         {
-            animator_black.SetBool("is_walking", false);
-            //同上
             Run();
         }
 
@@ -172,30 +169,39 @@ public class black_controller : MonoBehaviour
         {
             dodge_input = false;
             StartCoroutine(Dodge());
-            animator_black.SetTrigger("dodge_trigger");
         }
     }
 
-    void AnimationSystem()
+    void AnimationController()
     {
+        /* idle animation */
         if (!is_moving_horizontal && is_ground && !is_dodging)
         {
-            if (!IsAnimationPlaying(animation_fall))
+            if (!IsAnimationPlaying(animation_jump_end))
             {
                 ChangeAnimationState(animation_idle);
             }
         }
 
+        /* run animation */
         if (is_moving_horizontal && is_ground && !is_dodging)
         {
-            if (!IsAnimationPlaying(animation_fall))
+            if (!IsAnimationPlaying(animation_run_jump_end))
             {
-                ChangeAnimationState(animation_run);
+                if (current_state == animation_jump_end){
+                    ChangeAnimationState(animation_run, 0.30f);
+                }
+                else
+                {
+                    ChangeAnimationState(animation_run);
+                }
             }
         }
 
+        /* jump animation */
         if (!is_ground && !is_dodging)
         {
+            /* idle jump */
             if (!is_moving_horizontal)
             {
                 if(jump_count == 1 && jump_state == 1
@@ -209,15 +215,14 @@ public class black_controller : MonoBehaviour
                     ChangeAnimationState(animation_jump_end);
                 }
             }
+            /* run jump */
             else
             {
-                if(jump_count == 1 && jump_state == 1
-                    && !animator_black.GetCurrentAnimatorStateInfo(0).IsName(animation_jump_up_1))
+                if(jump_count == 1 && jump_state == 1 && !animator_black.GetCurrentAnimatorStateInfo(0).IsName(animation_jump_up_1))
                 {
                     ChangeAnimationState(animation_run_jump_up_1);
                 }
-                if (jump_state == 3
-                    && !animator_black.GetCurrentAnimatorStateInfo(0).IsName(animation_run_end))
+                if (jump_state == 3 && !animator_black.GetCurrentAnimatorStateInfo(0).IsName(animation_run_end))
                 {
                     ChangeAnimationState(animation_run_jump_end);
                 }
@@ -229,8 +234,15 @@ public class black_controller : MonoBehaviour
             }
             if (jump_state == 2)
             {
-                ChangeAnimationState(animation_fall);
+                if (!IsAnimationPlaying(animation_jump_roll)){
+                    ChangeAnimationState(animation_fall);
+                }
             }
+        }
+
+        if (is_dodging)
+        {
+            ChangeAnimationState(animation_dodge);
         }
     }
 
@@ -240,13 +252,11 @@ public class black_controller : MonoBehaviour
         {
             rb_black.velocity = new Vector3(move_horizontal * run_speed, rb_black.velocity.y, 0f);
             is_moving_horizontal = true;
-            animator_black.SetBool("is_running", true);
         }
         else
         {
             rb_black.velocity = new Vector3(0f, rb_black.velocity.y, 0f);
             is_moving_horizontal = false;
-            animator_black.SetBool("is_running", false);
         }
     }
 
@@ -256,13 +266,11 @@ public class black_controller : MonoBehaviour
         {
             rb_black.velocity = new Vector3(move_horizontal * walk_speed, rb_black.velocity.y, 0f);
             is_moving_horizontal = true;
-            animator_black.SetBool("is_walking", true);
         }
         else
         {
             rb_black.velocity = new Vector3(0f, rb_black.velocity.y, 0f);
             is_moving_horizontal = false;
-            animator_black.SetBool("is_walking", false);
         }
     }
 
@@ -270,7 +278,6 @@ public class black_controller : MonoBehaviour
     {
         if (jump_count < jump_count_max)
         {
-            animator_black.SetTrigger("jump_trigger");
 
             if (jump_count == 0)
             {
@@ -337,8 +344,7 @@ public class black_controller : MonoBehaviour
 
     bool IsAnimationPlaying(string state_name, float exit_time = 1.0f)
     {
-        if (animator_black.GetCurrentAnimatorStateInfo(0).IsName(state_name)
-            && animator_black.GetCurrentAnimatorStateInfo(0).normalizedTime < exit_time)
+        if (animator_black.GetCurrentAnimatorStateInfo(0).IsName(state_name) && animator_black.GetCurrentAnimatorStateInfo(0).normalizedTime < exit_time)
         {
             return true;
         }
