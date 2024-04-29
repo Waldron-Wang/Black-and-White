@@ -10,6 +10,8 @@ public class sword_shield : MonoBehaviour
     //标示玩家是否有攻击输入
     bool is_attacking;
     //是否处于攻击状态
+    bool is_checking_attack_input;
+    bool can_attack;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,8 @@ public class sword_shield : MonoBehaviour
 
         attack_input = false;
         is_attacking = false;
+        can_attack = true;
+        is_checking_attack_input = false;
     }
 
     // Update is called once per frame
@@ -34,10 +38,9 @@ public class sword_shield : MonoBehaviour
     
     void check_attack_input()
     {
-        if (Input.GetKeyDown(KeyCode.J) && is_attacking == false)
+        if (Input.GetKey(KeyCode.J) && can_attack)
         {
             attack_input = true;
-            is_attacking = true;
         }
     }
 }

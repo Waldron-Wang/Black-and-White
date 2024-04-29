@@ -183,7 +183,7 @@ public class black_controller : MonoBehaviour
             }
         }
 
-        /* run animation */
+        /* walk & run animation */
         if (is_moving_horizontal && is_ground && !is_dodging)
         {
             if (!IsAnimationPlaying(animation_run_jump_end))
@@ -196,6 +196,10 @@ public class black_controller : MonoBehaviour
                     ChangeAnimationState(animation_run);
                 }
             }
+        }
+        else if (is_moving_horizontal && is_ground && !is_dodging && Input.GetKey(KeyCode.Tab))
+        {
+            ChangeAnimationState(animation_walk);
         }
 
         /* jump animation */
