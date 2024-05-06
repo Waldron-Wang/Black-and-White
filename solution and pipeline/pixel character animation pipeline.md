@@ -16,5 +16,6 @@ model——到mixamo上自动生成rig（一定要调试好，生成最佳rig，
 调整模型scale factor——将动画类型改为legacy
 ——将material改为使用外部材质
 （在该unity项目中有单独的材质文件夹，使用外部材质就是使用该材质文件夹）
+### 导出2d像素动画
 设置场景中的capturer要capture的对象、动画、大小和帧率
 按capture按钮生成sprite sheet——将sprite sheet导入2D URP的texture文件夹
