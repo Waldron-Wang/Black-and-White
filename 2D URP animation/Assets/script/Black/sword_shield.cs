@@ -9,19 +9,15 @@ public class sword_shield : MonoBehaviour
     black_controller black_Controller;
     Animator animator;
 
-    const string animation_attack_1 = "attack_1";
-    const string animation_attack_2 = "attack_2";
-    const string animation_attack_3 = "attack_3";
-
-
     float attack_cooling_time;
     float attack_waiting_time;
-    int attack_count;
+    public int attack_count;
     //0:not attacking   1:attack_1   2:attack_2   3:attack_3
+    
+    public bool is_attacking;
+    //是否处于攻击状态,用于与controller脚本通信
     bool attack_input;
     //标示玩家是否有攻击输入
-    bool is_attacking;
-    //是否处于攻击状态,用于与controller脚本通信
     bool is_checking_attack_input;
     bool can_attack;
     
@@ -37,11 +33,12 @@ public class sword_shield : MonoBehaviour
         can_attack = true;
         is_checking_attack_input = false;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-
+        CheckAttackInput();
+        
+        AttackStateMachine();
     }
 
     void AttackStateMachine()
@@ -49,7 +46,6 @@ public class sword_shield : MonoBehaviour
         if (attack_count == 0 && attack_input && !is_checking_attack_input)
         {
             attack_count = 1;
-            is_attacking = true;
         }
         else if (attack_count == 1 && attack_input && !is_checking_attack_input)
         {
@@ -59,7 +55,8 @@ public class sword_shield : MonoBehaviour
         {
             attack_count = 3;
         }
-        else if (attack_count == 3){
+        else if (attack_count == 3)
+        {
 
         }
 
@@ -79,13 +76,18 @@ public class sword_shield : MonoBehaviour
         }
     }
 
-    void BeginCheckInput()
+    public void BeginCheckInput()
+    //call this method at the first frame of attack animation
     {
         is_checking_attack_input = true;
+        is_attacking = true;
+        Debug.Log("begin_check");
     }
 
-    IEnumerator EndCheckInput()
+    public IEnumerator EndCheckInput()
+    //call this method at the last frame of attack animation
     {
+        is_attacking = false;
         yield return new WaitForSeconds(attack_waiting_time);
         is_checking_attack_input = false;
     }

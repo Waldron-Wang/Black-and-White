@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class black_controller : MonoBehaviour
 {
+    sword_shield Sword_shield;
+    
     Rigidbody2D rb_black;
     Animator animator_black;
 
@@ -19,6 +21,10 @@ public class black_controller : MonoBehaviour
     const string animation_run_jump_up_1 = "run_jump_up_1";
     const string animation_run_jump_end = "run_jump_end";
     const string animation_dodge = "dodge";
+    const string animation_attack_1 = "attack_1";
+    const string animation_attack_2 = "attack_2";
+    const string animation_attack_3 = "attack_3";
+
 
 
     [SerializeField] float run_speed;    //移动的速度velocity
@@ -60,6 +66,8 @@ public class black_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Sword_shield = gameObject.GetComponent<sword_shield>();
+        
         rb_black = gameObject.GetComponent<Rigidbody2D>();
         animator_black = gameObject.GetComponent<Animator>();
 
@@ -241,6 +249,16 @@ public class black_controller : MonoBehaviour
                 if (!IsAnimationPlaying(animation_jump_roll)){
                     ChangeAnimationState(animation_fall);
                 }
+            }
+        }
+
+        if (Sword_shield.is_attacking)
+        {
+            Debug.Log("is_attacking"+Sword_shield.is_attacking);
+            if (Sword_shield.attack_count == 1)
+            {
+                ChangeAnimationState(animation_attack_1);
+                Debug.Log("attack_count"+Sword_shield.attack_count);
             }
         }
 
