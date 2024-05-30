@@ -39,6 +39,7 @@ public class sword_shield : MonoBehaviour
         CheckAttackInput();
         
         AttackStateMachine();
+        Debug.Log("is checking attack input"+is_checking_attack_input);
     }
 
     void AttackStateMachine()
