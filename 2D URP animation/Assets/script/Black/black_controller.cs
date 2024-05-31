@@ -112,8 +112,6 @@ public class black_controller : MonoBehaviour
         move_horizontal = Input.GetAxisRaw("Horizontal");
         //unity的输入系统被设置为与帧更新同步
 
-        Flip();
-
         CheckJumpInput();
 
         CheckDodgeInput();
@@ -128,8 +126,9 @@ public class black_controller : MonoBehaviour
 
         //Debug.Log("attack count: " + attack_count);
         //Debug.Log("attack first input " + attack_first_input);
-        //Debug.Log("attack input " + attack_input);
+        Debug.Log("outside attack input " + attack_input);
         //Debug.Log("is attacking "+is_attacking);
+        //Debug.Log("is checking attack input: "+is_checking_attack_input);
     }
 
     private void FixedUpdate()
@@ -217,7 +216,6 @@ public class black_controller : MonoBehaviour
             if (attack_count == 1)
             {
                 ChangeAnimationState(animation_attack_1);
-
             }
             else if (attack_count == 2)
             {
@@ -237,6 +235,16 @@ public class black_controller : MonoBehaviour
 
     void MovementStateMachine()
     {
+        if (move_horizontal > 0.01f && is_face_right == false)
+        {
+            Flip();
+        }
+        else if (move_horizontal < -0.01f && is_face_right == true)
+        {
+            Flip();
+        }
+
+        
         if (is_dodging)
         {
             return;
@@ -266,15 +274,15 @@ public class black_controller : MonoBehaviour
 
     void CheckAttackState()
     {
-        if (attack_first_input && !is_attacking)
+        if (attack_first_input && !is_attacking && !is_checking_attack_input)
         {
             BeginCheckAttackInput();
             attack_count++;
-            Debug.Log("attack count: " + attack_count);
+            //Debug.Log("attack count: " + attack_count);
             is_attacking = true;
             attack_first_input = false;
         }
-        else if (attack_input && !is_attacking)
+        else if (attack_input && !is_attacking && !is_checking_attack_input)
         {
             is_attacking = true;
             attack_input = false;
@@ -284,13 +292,13 @@ public class black_controller : MonoBehaviour
                 case 1:
                     BeginCheckAttackInput();
                     attack_count++;
-                    Debug.Log("attack count: " + attack_count);
+                    //Debug.Log("attack count: " + attack_count);
                     break;
 
                 case 2:
                     BeginCheckAttackInput();
                     attack_count++;
-                    Debug.Log("attack count: " + attack_count);
+                    //Debug.Log("attack count: " + attack_count);
                     break;
 
                 case 3:
@@ -298,7 +306,7 @@ public class black_controller : MonoBehaviour
                     break;
             }
         }
-        
+
         else if (is_attacking)
         {
             switch (attack_count)
@@ -308,6 +316,7 @@ public class black_controller : MonoBehaviour
                     {
                         StartCoroutine(EndCheckAttackInput());
                         is_attacking = false;
+                        //Debug.Log("end 1");
                     }
                     break;
                 case 2:
@@ -315,7 +324,7 @@ public class black_controller : MonoBehaviour
                     {
                         StartCoroutine(EndCheckAttackInput());
                         is_attacking = false;
-
+                        //Debug.Log("end 2");
                     }
                     break;
                 case 3:
@@ -323,6 +332,7 @@ public class black_controller : MonoBehaviour
                     {
                         StartCoroutine(EndCheckAttackInput());
                         is_attacking = false;
+                        //Debug.Log("end 3");
                     }
                     break;
             }
@@ -331,13 +341,11 @@ public class black_controller : MonoBehaviour
         if (!attack_input && !is_checking_attack_input)
         {
             attack_count = 0;
-            Debug.Log("attack count: " + attack_count);
             is_attacking = false;
         }
         else if (attack_count == 3 && !is_attacking)
         {
             attack_count = 0;
-            Debug.Log("attack count: " + attack_count);
             is_attacking = false;
         }
     }
@@ -395,16 +403,8 @@ public class black_controller : MonoBehaviour
 
     void Flip()
     {
-        if (move_horizontal > 0.01f && is_face_right == false)
-        {
-            is_face_right = !is_face_right;
-            transform.Rotate(0, 180, 0);
-        }
-        else if (move_horizontal < -0.01f && is_face_right == true)
-        {
-            is_face_right = !is_face_right;
-            transform.Rotate(0, 180, 0);
-        }
+        is_face_right = !is_face_right;
+        transform.Rotate(0, 180, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -528,6 +528,7 @@ public class black_controller : MonoBehaviour
                 if (is_checking_attack_input)
                 {
                     attack_input = true;
+                    //Debug.Log(attack_input);
                 }
             }
         }
@@ -542,8 +543,23 @@ public class black_controller : MonoBehaviour
     IEnumerator EndCheckAttackInput()
     //call this method at the last frame of attack animation
     {
-        yield return new WaitForSeconds(attack_waiting_time);
+        if (!attack_input)
+        {
+            yield return StartCoroutine(WaitOrInterruptAttack(attack_waiting_time));
+        }
+        //Debug.Log("end");
         is_checking_attack_input = false;
-        Debug.Log("end check");
+    }
+
+    IEnumerator WaitOrInterruptAttack(float waitTime)
+    {
+        float elapsed_time = 0.0f;
+        while (elapsed_time < waitTime && !attack_input && attack_count != 3)
+        {
+            yield return null; 
+            //暂停协程，到下一帧再运行
+            elapsed_time += Time.deltaTime;
+            //Debug.Log("inside attack input " + attack_input);
+        }
     }
 }
