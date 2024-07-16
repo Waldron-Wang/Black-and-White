@@ -2,7 +2,7 @@
 实现3D动画直接渲染成2D像素动画，避免手绘，实现了大批量生产动画
 # pipeline
 ## 3d model
-model——到mixamo上自动生成rig（一定要调试好，生成最佳rig，保持原来姿势）
+model(只导出面和骨骼，其他物体无需导入，会引入很多不需要的文件)——到mixamo上自动生成rig（一定要调试好，生成最佳rig，保持原来姿势）
 ——在maya中首先重新skin（重新skin前尽量不动人物，防止模型变形）
 ——最后define rig并生成rig control——选择mesh和rig导入unity——提取材质，完成材质设置  
 ## export into unity
