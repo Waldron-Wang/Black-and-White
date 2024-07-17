@@ -5,8 +5,8 @@
 ## 美工
 ### tileset
 本次任务更加具体  
-![图一](https://github.com/Waldron-Wang/Black-and-White/Assets/Pixel%20Art%20Snowy%20Forest/PNG/tileset.png)
-![图二](https://github.com/Waldron-Wang/Black-and-White/Assets/Free%20Pixel%20Art%20Forest/PNG/Hills%20Layer%2005.png)
+![图一](../Assets/Pixel%20Art%20Snowy%20Forest/PNG/tileset.png)
+![图二](../Assets/Free%20Pixel%20Art%20Forest/PNG/Hills%20Layer%2005.png)
 制作一个和图一一模一样的tileset，仅把雪地替换成图二的草坪  
 并用图二最下面一点点的泥土（仔细看，草下面是有土的）的颜色替换掉图一的泥土的颜色  
 其次图一泥土边缘是明显的冻土，看看能不能稍作修改让它看起来不这么干  
@@ -15,9 +15,9 @@
 修改雪地时直接将图二的草坪复制过去，将雪地盖住，然后对衔接部分稍作修改使其看起来更自然  
 并不需要对草坪本身作出修改  
 其最终效果大概如图三（图三是另外一种草坪，且只完成了图一的部分tile）  
-![图三](https://github.com/Waldron-Wang/Black-and-White/2D%20URP%20animation/Assets/environment/Level%203/L3%20tileset.png)
+![图三](../2D%20URP%20animation/Assets/environment/Level%203/L3%20tileset.png)
 ### 背景群山
-![图四](https://github.com/Waldron-Wang/Black-and-White/Assets/Free%20Pixel%20Art%20Forest/PNG/Hills%20Layer%2001.png)
+![图四](../Assets/Free%20Pixel%20Art%20Forest/PNG/Hills%20Layer%2001.png)
 山的形状过于奇怪，将其改为正常的形状，写实一点  
 其他所有的都不用变（颜色，花纹）  
 但是山后面的背景无所谓，可以直接去掉也可以留着  
