@@ -552,7 +552,6 @@ public class black_controller : MonoBehaviour
     }
 
     IEnumerator WaitOrInterruptAttack(float waitTime)
-    //attack wait timer
     {
         float elapsed_time = 0.0f;
         while (elapsed_time < waitTime && !attack_input && attack_count != 3)
