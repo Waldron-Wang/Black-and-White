@@ -11,6 +11,7 @@ public class PlayerRunState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("Enter Run State");
     }
 
     public override void ExitState()
@@ -20,23 +21,25 @@ public class PlayerRunState : PlayerState
 
     public override void FrameUpdate()
     {
-        base.FrameUpdate();        
+        base.FrameUpdate();
+        
+        // switch to Idle state
+        if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
+            playerStateMachine.ChangeState(player.IdleState);
+
+        // switch to jump state
+        if (player.VerticalMoveInput  == true)
+            playerStateMachine.ChangeState(player.JumpState);
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
 
-        player.HorizontalMoveInput = Input.GetAxisRaw("Horizontal");
-
         if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
-        {
-            player.RigidBody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed, player.RigidBody.velocity.y, 0f);
-        }
+            player.PlayerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed, player.PlayerRigidbody.velocity.y, 0f);
         else
-        {
-            player.RigidBody.velocity = new Vector3(0f, player.RigidBody.velocity.y, 0f);
-        }
+            player.PlayerRigidbody.velocity = new Vector3(0f, player.PlayerRigidbody.velocity.y, 0f);
     }
 
 }

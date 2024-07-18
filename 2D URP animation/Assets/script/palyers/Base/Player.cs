@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    public Rigidbody2D RigidBody;
-    public Animator animator;
+    public Rigidbody2D PlayerRigidbody;
+    public Transform PlayerTransform;
     public float MaxHealth { get; set; }
     public float CurrentHealth { get; set; }
 
@@ -21,24 +21,25 @@ public class Player : MonoBehaviour, IDamageable
     [HideInInspector] public float HorizontalMoveInput;
     [HideInInspector] public bool VerticalMoveInput;
     [HideInInspector] public int JumpCount;
-    [HideInInspector] public int MaxJumpCount;    
+    [HideInInspector] public int MaxJumpCount;
     //[HideInInspector] public int AirState;
     //记录当前跳跃状态，0为未跳跃，1为上升，2为下降，3为即将落地
     [HideInInspector] public bool IsFacingRight;
+    [HideInInspector] public bool IsFalling;
     [HideInInspector] public bool IsGround;
     [HideInInspector] public bool IsDodging;
     [HideInInspector] public bool CanDodge;
     [HideInInspector] public bool DodgeInput;
 
-    RaycastHit2D HitObject;
+    [HideInInspector] public RaycastHit2D HitObject;
     // 这是被射线碰撞的结构体实例，包含有关碰撞的详细信息，如碰撞点的位置、碰撞点的表面法线、碰撞物体的引用
-    Vector2 RayOrigin;
+    [HideInInspector] public Vector2 RayOrigin;
     // 射线的起始点
-    Vector2 RayDirection;
+    [HideInInspector] public Vector2 RayDirection;
     // 射线的方向
-    float RayDistance;
+    [HideInInspector] public float RayDistance;
     // 射线的长度,同时也是人物开始进入jump_state 3时的离地面的距离
-    LayerMask RayLayer;
+    public LayerMask RayLayer;
     // 使射线只检测30层里的碰撞ti
 
     #endregion
@@ -55,12 +56,37 @@ public class Player : MonoBehaviour, IDamageable
 
     #endregion
 
+    #region Animation Variable
+
+    public Animator PlayerAnimator;
+    [HideInInspector] public string CurrentPlayerStateName;
+    [HideInInspector] public const string AnimationIdle = "idle";
+    [HideInInspector] public const string AnimationRun = "run";
+    [HideInInspector] public const string AnimationWalk = "walk";
+    [HideInInspector] public const string AnimationRunEnd = "run_end";
+    [HideInInspector] public const string AnimationFirstJump = "jump_up_1";
+    [HideInInspector] public const string AnimationSecondJump = "jump_roll";
+    [HideInInspector] public const string AnimationFall = "fall";
+    [HideInInspector] public const string AnimationJumpEnd = "jump_end";
+    [HideInInspector] public const string AnimationFirstRunJump = "run_jump_up_1";
+    [HideInInspector] public const string AnimationRunJumpEnd = "run_jump_end";
+    [HideInInspector] public const string AnimationDodge = "dodge";
+    [HideInInspector] public const string AnimationAttack1 = "attack_1";
+    [HideInInspector] public const string AnimationAttack2 = "attack_2";
+    [HideInInspector] public const string AnimationAttack3 = "attack_3";
+
+    #endregion
+
+    #region Main Unity Function
+
     private void Awake()
     {
-        RigidBody  = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        PlayerRigidbody = GetComponent<Rigidbody2D>();
+        PlayerAnimator = GetComponent<Animator>();
+        PlayerTransform = GetComponent<Transform>();
 
         IsFacingRight = true;
+        IsFalling = false;
         IsGround = true;
         IsDodging = false;
         CanDodge = true;
@@ -69,7 +95,7 @@ public class Player : MonoBehaviour, IDamageable
         MaxJumpCount = 2;
 
         RayDirection = Vector2.down;
-        
+
         StateMachine = new PlayerStateMachine();
 
         IdleState = new PlayerIdleState(this, StateMachine);
@@ -88,10 +114,28 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     private void Update()
-    {        
-        StateMachine.CurrentPlayerState.FrameUpdate();
-        
-        //flip the player according to the direction he is facing
+    {
+        // check Jump Input
+        if (Input.GetButtonDown("Jump"))
+        {
+            VerticalMoveInput = true;
+            Debug.Log("jump");
+        }
+
+        // reset Jump Count
+        if (IsGround == true)
+            JumpCount = 0;
+
+        // check is falling
+        if (PlayerRigidbody.velocity.y < -0.05f)
+            IsFalling = true;
+        else
+            IsFalling = false;
+
+        // check horizontal move input
+        HorizontalMoveInput = Input.GetAxisRaw("Horizontal");
+
+        // flip the player according to the direction he is facing
         if (HorizontalMoveInput > 0.01f && IsFacingRight == false)
         {
             IsFacingRight = !IsFacingRight;
@@ -100,14 +144,18 @@ public class Player : MonoBehaviour, IDamageable
         else if (HorizontalMoveInput < -0.01f && IsFacingRight == true)
         {
             IsFacingRight = !IsFacingRight;
-            transform.Rotate(0, 180, 0);        
+            transform.Rotate(0, 180, 0);
         }
+
+        StateMachine.CurrentPlayerState.FrameUpdate();
     }
 
     private void FixedUpdate()
     {
         StateMachine.CurrentPlayerState.PhysicsUpdate();
     }
+
+    #endregion
 
     public void Damage(float damageAmount)
     {
@@ -124,7 +172,7 @@ public class Player : MonoBehaviour, IDamageable
         throw new System.NotImplementedException();
     }
 
-    #region Animation Trigger
+    #region Animation Manager
 
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
     {
@@ -136,6 +184,46 @@ public class Player : MonoBehaviour, IDamageable
         PlayerDamaged,
     }
 
+    void ChangeAnimationState(string new_state, float start_time = 0f)
+    //播放动画，第一个参数是要播放的动画名称对应的字符串，第二个参数是0到1的float变量，控制动画的播放的起始标准时间，默认为0
+    {
+        if (new_state == CurrentPlayerStateName)
+        {
+            return;
+        }
+
+        PlayerAnimator.Play(new_state, 0, start_time);
+        CurrentPlayerStateName = new_state;
+    }
+
+    bool IsAnimationPlaying(string state_name, float exit_time = 1.0f)
+    //检查动画是否正在播放，第二个参数是0到1的float变量，规定了播放完成的终止标准时间，默认为1，
+    {
+        if (PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName(state_name) && PlayerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < exit_time)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     #endregion
 
+    #region Collision
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "platforms")
+            IsGround = true;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "platforms")
+            IsGround = false;
+    }
+
+    #endregion
 }

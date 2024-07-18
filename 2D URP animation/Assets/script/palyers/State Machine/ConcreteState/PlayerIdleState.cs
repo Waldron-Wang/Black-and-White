@@ -11,6 +11,7 @@ public class PlayerIdleState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("Enter Idle State");
     }
 
     public override void ExitState()
@@ -24,15 +25,11 @@ public class PlayerIdleState : PlayerState
 
         // switch to run state
         if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
-        {
             playerStateMachine.ChangeState(player.RunState);
-        }
-
+        
         // switch to jump state
         if (player.VerticalMoveInput  == true)
-        {
             playerStateMachine.ChangeState(player.JumpState);
-        }
     }
 }
 
