@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IDamageable
     public float DodgeGravity;
     [HideInInspector] public float HorizontalMoveInput;
     [HideInInspector] public bool VerticalMoveInput;
+    [HideInInspector] public bool IsCheckingVerticalMoveInput;
     [HideInInspector] public int JumpCount;
     [HideInInspector] public int MaxJumpCount;
     //[HideInInspector] public int AirState;
@@ -81,21 +82,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        PlayerRigidbody = GetComponent<Rigidbody2D>();
-        PlayerAnimator = GetComponent<Animator>();
-        PlayerTransform = GetComponent<Transform>();
-
-        IsFacingRight = true;
-        IsFalling = false;
-        IsGround = true;
-        IsDodging = false;
-        CanDodge = true;
-        DodgeInput = false;
-        JumpCount = 0;
-        MaxJumpCount = 2;
-
-        RayDirection = Vector2.down;
-
         StateMachine = new PlayerStateMachine();
 
         IdleState = new PlayerIdleState(this, StateMachine);
@@ -111,16 +97,30 @@ public class Player : MonoBehaviour, IDamageable
         CurrentHealth = MaxHealth;
 
         StateMachine.InitializeState(IdleState);
+
+        PlayerRigidbody = GetComponent<Rigidbody2D>();
+        PlayerAnimator = GetComponent<Animator>();
+        PlayerTransform = GetComponent<Transform>();
+
+        IsCheckingVerticalMoveInput = true;
+        IsFacingRight = true;
+        IsFalling = false;
+        IsGround = true;
+        IsDodging = false;
+        CanDodge = true;
+        DodgeInput = false;
+        JumpCount = 0;
+        MaxJumpCount = 2;
+
+        RayDirection = Vector2.down;
     }
 
     private void Update()
     {
         // check Jump Input
-        if (Input.GetButtonDown("Jump"))
-        {
-            VerticalMoveInput = true;
-            Debug.Log("jump");
-        }
+        if (IsCheckingVerticalMoveInput)
+            if (Input.GetButtonDown("Jump"))
+                VerticalMoveInput = true;
 
         // reset Jump Count
         if (IsGround == true)
@@ -223,6 +223,20 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.tag == "platforms")
             IsGround = false;
+    }
+
+    #endregion
+
+    #region Player Input Check
+
+    public void BeginVerticalMoveCheck()
+    {
+        IsCheckingVerticalMoveInput = true;
+    }
+
+    public void EndVerticalMoveCheck()
+    {
+        IsCheckingVerticalMoveInput = false;
     }
 
     #endregion
