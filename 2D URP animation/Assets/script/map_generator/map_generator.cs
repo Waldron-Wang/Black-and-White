@@ -13,7 +13,9 @@ public class map_generator : MonoBehaviour
     private float noise_scale = 0.05f;
     private float square_scale = 0.16f;
     private float num_noise_layers = 3;
-    // private float[] frequencies = { 0.1f
+    private float[] frequencies = { 0.2f, 1.0f, 2.0f };
+    private float[] amplitudes = { 1.0f, 0.5f, 0.25f };
+
 
     private int[,] map;
     private int[] max_height;
@@ -35,9 +37,11 @@ public class map_generator : MonoBehaviour
     void GenerateFloor() {
         // Generate a map with random values
         for (int x = 0; x < map_width; x++) {
-            float noise = Mathf.PerlinNoise(x * noise_scale, 0);
-            int height = (int)(noise * map_height);
-            // Debug.Log("Noise: " + noise + " Height: " + height);
+            float noise_sum = 0;
+            for (int i = 0; i < num_noise_layers; i++) {
+                noise_sum += amplitudes[i] * Mathf.PerlinNoise(x * frequencies[i] * noise_scale, 0);
+            }
+            int height = (int)(noise_sum * map_height);
             max_height[x] = height;
         }
     }
