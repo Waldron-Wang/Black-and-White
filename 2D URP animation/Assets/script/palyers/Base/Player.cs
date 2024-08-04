@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, IDamageable
     public float WalkSpeed;
     public float FirstJumpForce;
     public float SecondJumoForce;
+    public float AirDrag;
     public float DodgeTime;
     public float DodgeCoolTime;
     public float DodgeForce;
@@ -122,9 +123,15 @@ public class Player : MonoBehaviour, IDamageable
             if (Input.GetButtonDown("Jump"))
                 VerticalMoveInput = true;
 
+        // check is ground
+        if (PlayerRigidbody.velocity.y > 0.01f || PlayerRigidbody.velocity.y < -0.01f)
+            IsGround = false;
+
         // reset Jump Count
         if (IsGround == true)
+        {
             JumpCount = 0;
+        }
 
         // check is falling
         if (PlayerRigidbody.velocity.y < -0.05f)
@@ -217,12 +224,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.tag == "platforms")
             IsGround = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "platforms")
-            IsGround = false;
     }
 
     #endregion

@@ -57,7 +57,7 @@ public class PlayerJumpState : PlayerState
 
     public override void PhysicsUpdate()
     {
-
+        MoveInAir();
     }
 
     void Jump()
@@ -74,5 +74,13 @@ public class PlayerJumpState : PlayerState
                 player.VerticalMoveInput = false;
                 break;
         }
+    }
+
+    void MoveInAir()
+    {
+        if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
+            player.PlayerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed * (1 - player.AirDrag), player.PlayerRigidbody.velocity.y, 0f);
+        else
+            player.PlayerRigidbody.velocity = new Vector3(0f, player.PlayerRigidbody.velocity.y, 0f);
     }
 }
