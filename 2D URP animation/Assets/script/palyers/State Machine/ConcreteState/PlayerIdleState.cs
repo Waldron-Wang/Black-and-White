@@ -12,11 +12,15 @@ public class PlayerIdleState : PlayerState
     {
         base.EnterState();
         Debug.Log("Enter Idle State");
+
+        player.BeginVerticalMoveCheck();
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        player.EndVerticalMoveCheck();
     }
 
     public override void FrameUpdate()

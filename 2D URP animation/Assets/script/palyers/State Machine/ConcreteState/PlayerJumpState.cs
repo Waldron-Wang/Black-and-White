@@ -15,6 +15,8 @@ public class PlayerJumpState : PlayerState
     {
         base.EnterState();
 
+        player.BeginVerticalMoveCheck();
+
         player.JumpCount++;
 
         if (player.JumpCount == 1)
@@ -31,6 +33,9 @@ public class PlayerJumpState : PlayerState
         base.ExitState();
 
         HaveJumped = false;
+
+        if (player.JumpCount == 2)
+            player.EndVerticalMoveCheck();
     }
 
     public override void FrameUpdate()

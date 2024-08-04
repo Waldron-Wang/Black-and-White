@@ -12,11 +12,15 @@ public class PlayerRunState : PlayerState
     {
         base.EnterState();
         Debug.Log("Enter Run State");
+
+        player.BeginVerticalMoveCheck();
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        player.EndVerticalMoveCheck();
     }
 
     public override void FrameUpdate()
