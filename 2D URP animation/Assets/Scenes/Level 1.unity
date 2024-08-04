@@ -319,12 +319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af8a19a36ad44d4595b2aed9d7a822c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map_width: 3000
+  map_width: 500
   map_height: 7
   floor_cube: {fileID: 3170997673461089032, guid: e1fbc99116ce0404bb929911e347e207, type: 3}
   underground_cube: {fileID: 1765498502680252759, guid: fe930510229216b4aab008659a88186d, type: 3}
-  noise_scale: 0.05
-  square_scale: 0.16
 --- !u!4 &385369961
 Transform:
   m_ObjectHideFlags: 0
@@ -436,6 +434,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -561,6 +560,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c30d1736d34b9045994b6c70d0e0ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 586223414}
 --- !u!1 &586223404 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3573572753224947930, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
@@ -607,6 +619,11 @@ MonoBehaviour:
     m_Bits: 8
   PlayerAnimator: {fileID: 0}
   CurrentPlayerStateName: 
+--- !u!4 &586223414 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3208600953804976312, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+  m_PrefabInstance: {fileID: 9219638543190892689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &649967605
 GameObject:
   m_ObjectHideFlags: 0

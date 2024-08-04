@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class map_generator : MonoBehaviour
 {
-    public int map_width = 3000;
-    public int map_height = 7;
+    public int map_width;
+    public int map_height;
+    
     public GameObject floor_cube;
     public GameObject underground_cube;
-    public float noise_scale = 0.05f;
-    public float square_scale = 0.16f;
+
+    private float noise_scale = 0.05f;
+    private float square_scale = 0.16f;
+    private float num_noise_layers = 3;
+    // private float[] frequencies = { 0.1f
 
     private int[,] map;
     private int[] max_height;
@@ -37,9 +41,6 @@ public class map_generator : MonoBehaviour
             max_height[x] = height;
         }
     }
-    // void Generatebuildings() {
-    //     // Generate buildings
-    // }
     void RenderMap() {
         for (int x = 0; x < map_width; x++) {
             for (int y = -20; y < map_height; y++) {
