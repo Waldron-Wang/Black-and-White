@@ -596,7 +596,7 @@ MonoBehaviour:
   WalkSpeed: 1
   FirstJumpForce: 6
   SecondJumoForce: 6
-  AirDrag: 0
+  AirDrag: 0.3
   DodgeTime: 0.4
   DodgeCoolTime: 0.4
   DodgeForce: 6

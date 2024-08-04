@@ -60,7 +60,7 @@ public class Player : MonoBehaviour, IDamageable
 
     #region Animation Variable
 
-    public Animator PlayerAnimator;
+    [HideInInspector] public Animator PlayerAnimator;
     [HideInInspector] public string CurrentPlayerStateName;
     [HideInInspector] public const string AnimationIdle = "idle";
     [HideInInspector] public const string AnimationRun = "run";
@@ -191,7 +191,7 @@ public class Player : MonoBehaviour, IDamageable
         PlayerDamaged,
     }
 
-    void ChangeAnimationState(string new_state, float start_time = 0f)
+    public void ChangeAnimationState(string new_state, float start_time = 0f)
     //播放动画，第一个参数是要播放的动画名称对应的字符串，第二个参数是0到1的float变量，控制动画的播放的起始标准时间，默认为0
     {
         if (new_state == CurrentPlayerStateName)
@@ -203,7 +203,7 @@ public class Player : MonoBehaviour, IDamageable
         CurrentPlayerStateName = new_state;
     }
 
-    bool IsAnimationPlaying(string state_name, float exit_time = 1.0f)
+    public bool IsAnimationPlaying(string state_name, float exit_time = 1.0f)
     //检查动画是否正在播放，第二个参数是0到1的float变量，规定了播放完成的终止标准时间，默认为1，
     {
         if (PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName(state_name) && PlayerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < exit_time)
