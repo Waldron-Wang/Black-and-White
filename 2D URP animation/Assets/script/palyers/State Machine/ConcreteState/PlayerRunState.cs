@@ -29,11 +29,19 @@ public class PlayerRunState : PlayerState
         
         // switch to Idle state
         if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
+        {
             playerStateMachine.ChangeState(player.IdleState);
+
+            player.ChangeAnimationState(Player.AnimationIdle);
+        }    
 
         // switch to jump state
         if (player.VerticalMoveInput  == true)
+        {
             playerStateMachine.ChangeState(player.JumpState);
+
+            player.ChangeAnimationState(Player.AnimationFirstRunJump);
+        }
     }
 
     public override void PhysicsUpdate()

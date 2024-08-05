@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a282c09b2d73a2b40ae63abf7faeb349
+guid: 43abc9394ceeec444b6973676270b72b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -97,118 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Level 1 tile set_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 236
-        width: 198
-        height: 137
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36c6f103f228aa84db2b7c0f949dc7d6
-      internalID: 952767096
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1 tile set_1
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 313
-        width: 124
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f91d8923b3da54a4f93c2d820c6cb3cd
-      internalID: -87015829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1 tile set_2
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 220
-        width: 188
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ff2491fdef1549d418682dea9501431c
-      internalID: -2115549615
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1 tile set_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 150
-        width: 151
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c30e17016401b44dbfe43104e808fe2
-      internalID: 322696359
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1 tile set_4
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 144
-        width: 164
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aae16ffbac7690142b9dda4f1b9252ed
-      internalID: 441596931
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Level 1 tile set_5
+      name: 05dfb222fadde2fce79945978808ab59_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 193
-        height: 133
+        width: 80
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bbe37a492b8baf47aee265c2b286246
-      internalID: 2104574984
+      spriteID: 114ad4f9702f471488c121b16b541ef6
+      internalID: -1853599004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Level 1 tile set_6
+      name: 05dfb222fadde2fce79945978808ab59_1
       rect:
         serializedVersion: 2
-        x: 204
+        x: 80
         y: 0
-        width: 280
-        height: 132
+        width: 80
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,8 +132,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e5b236644a244542b38615521a04c9a
-      internalID: -1272828221
+      spriteID: 06adfa7b7423ef041b1bd247312c3287
+      internalID: 1034846161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 05dfb222fadde2fce79945978808ab59_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64435b9cd8b7518498982eb3c46130cb
+      internalID: 1975807770
       vertices: []
       indices: 
       edges: []
@@ -254,13 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Level 1 tile set_0: 952767096
-      Level 1 tile set_1: -87015829
-      Level 1 tile set_2: -2115549615
-      Level 1 tile set_3: 322696359
-      Level 1 tile set_4: 441596931
-      Level 1 tile set_5: 2104574984
-      Level 1 tile set_6: -1272828221
+      05dfb222fadde2fce79945978808ab59_0: -1853599004
+      05dfb222fadde2fce79945978808ab59_1: 1034846161
+      05dfb222fadde2fce79945978808ab59_2: 1975807770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

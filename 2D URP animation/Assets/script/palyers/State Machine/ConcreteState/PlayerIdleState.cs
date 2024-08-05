@@ -29,11 +29,19 @@ public class PlayerIdleState : PlayerState
 
         // switch to run state
         if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
+        {
             playerStateMachine.ChangeState(player.RunState);
-        
+
+            player.ChangeAnimationState(Player.AnimationRun);
+        }
+
         // switch to jump state
         if (player.VerticalMoveInput  == true)
+        {
             playerStateMachine.ChangeState(player.JumpState);
+
+            player.ChangeAnimationState(Player.AnimationFirstJump);
+        }
     }
 }
 

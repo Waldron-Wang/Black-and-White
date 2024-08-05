@@ -6,6 +6,9 @@ using UnityEngine;
 public class PlayerJumpState : PlayerState
 {
     bool HaveJumped = false;
+    bool IsChangeDirection = false;
+    float InitialHorizontalSpeed;
+    float CurrentHorizontalSpeed;
 
     public PlayerJumpState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
@@ -15,14 +18,16 @@ public class PlayerJumpState : PlayerState
     {
         base.EnterState();
 
-        player.BeginVerticalMoveCheck();
-
-        player.JumpCount++;
-
         if (player.JumpCount == 1)
             Debug.Log("Enter First Jump state");
         else
             Debug.Log("Enter Second Jump state");
+
+        player.BeginVerticalMoveCheck();
+
+        player.JumpCount++;
+
+        InitialHorizontalSpeed = player.HorizontalMoveInput;
 
         Jump();
         HaveJumped = true;
@@ -42,22 +47,49 @@ public class PlayerJumpState : PlayerState
     {
         base.FrameUpdate();
 
+        CurrentHorizontalSpeed = player.HorizontalMoveInput;
+
+        // check if player change its direction
+        if (!IsChangeDirection && (CurrentHorizontalSpeed != InitialHorizontalSpeed))
+            IsChangeDirection = true;
+
         // ensure all the method below can be called only after the Jump method are called
         if (!HaveJumped)
             return;
 
         // switch to Fall state
         if (player.IsFalling == true)
+        {
             player.StateMachine.ChangeState(player.FallState);
+
+            player.ChangeAnimationState(Player.AnimationFall);
+        }
 
         // switch to second jump state
         if (player.VerticalMoveInput == true && player.JumpCount == 1)
+        {
             player.StateMachine.ChangeState(player.JumpState);
+
+            player.ChangeAnimationState(Player.AnimationSecondJump);
+        }
     }
 
     public override void PhysicsUpdate()
     {
-
+        if (IsChangeDirection)
+        {
+            if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
+                player.PlayerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed * (1 - player.AirDrag), player.PlayerRigidbody.velocity.y, 0f);
+            else
+                player.PlayerRigidbody.velocity = new Vector3(0f, player.PlayerRigidbody.velocity.y, 0f);
+        }
+        else
+        {
+            if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
+                player.PlayerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed, player.PlayerRigidbody.velocity.y, 0f);
+            else
+                player.PlayerRigidbody.velocity = new Vector3(0f, player.PlayerRigidbody.velocity.y, 0f);
+        }
     }
 
     void Jump()
