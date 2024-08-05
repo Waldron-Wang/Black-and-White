@@ -52,6 +52,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: long_air_island Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3363451801189856071, guid: 821d4d239f5759e4e902770c9ffdeedc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363451801189856071, guid: 821d4d239f5759e4e902770c9ffdeedc, type: 3}
+      propertyPath: m_TagString
+      value: platforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 3885082246626739067, guid: 821d4d239f5759e4e902770c9ffdeedc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468934230600575844, guid: 821d4d239f5759e4e902770c9ffdeedc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939264596166481212, guid: 821d4d239f5759e4e902770c9ffdeedc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455788714655894200, guid: 821d4d239f5759e4e902770c9ffdeedc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8473951797690234006, guid: 821d4d239f5759e4e902770c9ffdeedc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

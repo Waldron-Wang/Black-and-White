@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: short_air_island Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 465819474321143313, guid: 4255b18cecddc944eaa03a1a3fa4f589, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 465819474321143313, guid: 4255b18cecddc944eaa03a1a3fa4f589, type: 3}
+      propertyPath: m_TagString
+      value: platforms
+      objectReference: {fileID: 0}
     - target: {fileID: 9126502093643611254, guid: 4255b18cecddc944eaa03a1a3fa4f589, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.16674495
