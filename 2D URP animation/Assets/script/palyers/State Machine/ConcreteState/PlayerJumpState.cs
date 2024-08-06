@@ -72,6 +72,14 @@ public class PlayerJumpState : PlayerState
 
             player.ChangeAnimationState(Player.AnimationSecondJump);
         }
+
+         // switch to Dodge state
+        if (player.DodgeInput && player.CanDodge)
+        {
+            playerStateMachine.ChangeState(player.DodgeState);
+
+            player.ChangeAnimationState(Player.AnimationDodge);
+        }
     }
 
     public override void PhysicsUpdate()

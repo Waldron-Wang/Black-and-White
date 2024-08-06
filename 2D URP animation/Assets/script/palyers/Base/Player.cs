@@ -20,6 +20,8 @@ public class Player : MonoBehaviour, IDamageable
     public float DodgeForce;
     public float DodgeGravity;
     [HideInInspector] public float HorizontalMoveInput;
+    [HideInInspector] public float DodgeCoolTimer;
+    [HideInInspector] public bool beginDodgeCoolTimer;
     [HideInInspector] public bool VerticalMoveInput;
     [HideInInspector] public bool IsCheckingVerticalMoveInput;
     [HideInInspector] public int JumpCount;
@@ -103,7 +105,10 @@ public class Player : MonoBehaviour, IDamageable
         PlayerAnimator = GetComponent<Animator>();
         PlayerTransform = GetComponent<Transform>();
 
+        DodgeCoolTimer = DodgeCoolTime;
+
         IsCheckingVerticalMoveInput = true;
+        beginDodgeCoolTimer = false;
         IsFacingRight = true;
         IsFalling = false;
         IsGround = true;
@@ -119,7 +124,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Update()
     {
         // check Jump Input
-        if (IsCheckingVerticalMoveInput)
+        if (IsCheckingVerticalMoveInput && JumpCount < 2)
             if (Input.GetButtonDown("Jump"))
                 VerticalMoveInput = true;
 
@@ -133,8 +138,24 @@ public class Player : MonoBehaviour, IDamageable
             JumpCount = 0;
         }
 
+        // check dodge input
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            DodgeInput = true;
+
+        // reset Dodge cool timer
+        if (DodgeCoolTimer <= 0)
+        {
+            DodgeCoolTimer = DodgeCoolTime;
+            beginDodgeCoolTimer = false;
+            CanDodge = true;
+        }
+
+        // being Dodge coll timer
+        if (beginDodgeCoolTimer)
+            DodgeCoolTimer -= Time.deltaTime;
+
         // check is falling
-        if (PlayerRigidbody.velocity.y < -0.05f)
+        if (PlayerRigidbody.velocity.y < 0.05f && !IsGround)
             IsFalling = true;
         else
             IsFalling = false;

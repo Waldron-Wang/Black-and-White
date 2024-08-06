@@ -34,6 +34,14 @@ public class PlayerFallState : PlayerState
             player.ChangeAnimationState(Player.AnimationSecondJump);
         }
 
+        // switch to Dodge state
+        if (player.DodgeInput && player.CanDodge)
+        {
+            playerStateMachine.ChangeState(player.DodgeState);
+
+            player.ChangeAnimationState(Player.AnimationDodge);
+        }
+
         // ensure all the methods below can be called noly when player is not falling
         if (player.IsFalling)
             return;

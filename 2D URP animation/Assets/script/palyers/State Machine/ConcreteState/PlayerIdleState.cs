@@ -42,6 +42,14 @@ public class PlayerIdleState : PlayerState
 
             player.ChangeAnimationState(Player.AnimationFirstJump);
         }
+
+        // switch to Dodge state
+        if (player.DodgeInput && player.CanDodge)
+        {
+            playerStateMachine.ChangeState(player.DodgeState);
+
+            player.ChangeAnimationState(Player.AnimationDodge);
+        }
     }
 }
 
