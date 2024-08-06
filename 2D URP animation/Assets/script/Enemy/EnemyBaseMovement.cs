@@ -1,24 +1,24 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBaseMovement : MonoBehaviour
 {
-    public float speed = 2f; // ÒÆ¶¯ËÙ¶È
-    public float distance = 2f; // À´»ØÒÆ¶¯µÄ¾àÀë
+    public float speed = 2f; // ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
+    public float distance = 2f; // ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
 
-    private Vector3 startPosition; // ÆðÊ¼Î»ÖÃ
-    private bool movingRight = true; // µ±Ç°ÊÇ·ñÏòÓÒÒÆ¶¯
+    private Vector3 startPosition; // ï¿½ï¿½Ê¼Î»ï¿½ï¿½
+    private bool movingRight = true; // ï¿½ï¿½Ç°ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
 
     void Start()
     {
-        // ¼ÇÂ¼ÎïÌåµÄÆðÊ¼Î»ÖÃ
+        // ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼Î»ï¿½ï¿½
         startPosition = transform.position;
     }
 
     void Update()
     {
-        // ¼ÆËãÒÆ¶¯·¶Î§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½Î§
         float newXPosition = transform.position.x;
 
         if (movingRight)
@@ -26,7 +26,7 @@ public class EnemyBaseMovement : MonoBehaviour
             newXPosition += speed * Time.deltaTime;
             if (newXPosition >= startPosition.x + distance)
             {
-                movingRight = false; // µ½´ïÓÒ²à±ß½ç£¬¿ªÊ¼Ïò×óÒÆ¶¯
+                movingRight = false; // ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ß½ç£¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
             }
         }
         else
@@ -34,11 +34,11 @@ public class EnemyBaseMovement : MonoBehaviour
             newXPosition -= speed * Time.deltaTime;
             if (newXPosition <= startPosition.x - distance)
             {
-                movingRight = true; // µ½´ï×ó²à±ß½ç£¬¿ªÊ¼ÏòÓÒÒÆ¶¯
+                movingRight = true; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ç£¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
             }
         }
 
-        // ¸üÐÂÎïÌåÎ»ÖÃ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
         transform.position = new Vector3(newXPosition, transform.position.y, transform.position.z);
     }
 }
