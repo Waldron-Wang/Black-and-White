@@ -14,17 +14,17 @@ public class GhostWarriorController : MonoBehaviour
     const string animation_get_hit = "get_hit";
     const string animation_death = "death";
 
-    [SerializeField] float move_speed;
-    [SerializeField] float attack_range;
-    [SerializeField] float detect_range;
+    [SerializeField] float move_speed = 1 ;
+    [SerializeField] float attack_range = 2 ;
+    [SerializeField] float detect_range = 5 ;
     [SerializeField] LayerMask player_layer;
 
     bool is_facing_right = true;
-    bool is_patrolling;
-    bool is_chasing;
-    bool is_attacking;
-    bool is_hurt;
-    bool is_dead;
+    bool is_patrolling = true ;
+    bool is_chasing = false ;
+    bool is_attacking = false ;
+    bool is_hurt = false ;
+    bool is_dead = false ; 
     Transform player;
 
     void Start()
@@ -38,7 +38,11 @@ public class GhostWarriorController : MonoBehaviour
         is_hurt = false;
         is_dead = false;
 
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (player == null)
+        {
+            Debug.LogError("Player with tag 'Player' not found. Ensure the player GameObject has the correct tag.");
+        }
     }
 
     void Update()
@@ -55,6 +59,8 @@ public class GhostWarriorController : MonoBehaviour
         {
             return;
         }
+
+        if (player == null) return; // If player is not found, skip further processing.
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
