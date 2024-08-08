@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy_base : MonoBehaviour
+public class GhostWarriorController : MonoBehaviour
 {
-    Rigidbody2D rb;
+    Rigidbody2D rb_ghost;
     Animator animator_ghost;
 
     string current_state;
@@ -26,9 +26,10 @@ public class enemy_base : MonoBehaviour
     bool is_hurt = false ;
     bool is_dead = false ; 
     Transform player;
-    virtual public void Start()
+
+    void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb_ghost = GetComponent<Rigidbody2D>();
         animator_ghost = GetComponent<Animator>();
 
         is_patrolling = true;
@@ -44,7 +45,7 @@ public class enemy_base : MonoBehaviour
         }
     }
 
-    virtual public void Update()
+    void Update()
     {
         if (is_dead) return;
 
@@ -91,17 +92,17 @@ public class enemy_base : MonoBehaviour
         }
     }
 
-    virtual public void Patrol()
+    void Patrol()
     {
         ChangeAnimationState(animation_move);
-        rb.velocity = new Vector2(move_speed, rb.velocity.y);
+        rb_ghost.velocity = new Vector2(move_speed, rb_ghost.velocity.y);
     }
 
-    virtual public void ChasePlayer()
+    void ChasePlayer()
     {
         ChangeAnimationState(animation_move);
         Vector2 direction = (player.position - transform.position).normalized;
-        rb.velocity = new Vector2(direction.x * move_speed, rb.velocity.y);
+        rb_ghost.velocity = new Vector2(direction.x * move_speed, rb_ghost.velocity.y);
 
         if (direction.x > 0 && !is_facing_right)
         {
@@ -113,12 +114,12 @@ public class enemy_base : MonoBehaviour
         }
     }
 
-    virtual public void Attack()
+    void Attack()
     {
         ChangeAnimationState(animation_attack);
     }
 
-    virtual public void TakeDamage()
+    public void TakeDamage()
     {
         if (is_dead) return;
 
@@ -126,22 +127,22 @@ public class enemy_base : MonoBehaviour
         StartCoroutine(ResetHurt());
     }
 
-    virtual public IEnumerator ResetHurt()
+    IEnumerator ResetHurt()
     {
         yield return new WaitForSeconds(1f);
         is_hurt = false;
     }
 
-    virtual public void Die()
+    public void Die()
     {
         if (is_dead) return;
 
         is_dead = true;
         ChangeAnimationState(animation_death);
-        rb.velocity = Vector2.zero;
+        rb_ghost.velocity = Vector2.zero;
     }
 
-    virtual public void ChangeAnimationState(string new_state)
+    void ChangeAnimationState(string new_state)
     {
         if (new_state == current_state) return;
 
@@ -149,7 +150,7 @@ public class enemy_base : MonoBehaviour
         current_state = new_state;
     }
 
-    virtual public void Flip()
+    void Flip()
     {
         is_facing_right = !is_facing_right;
         transform.Rotate(0, 180, 0);
