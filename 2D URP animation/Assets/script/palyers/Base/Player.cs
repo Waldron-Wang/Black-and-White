@@ -19,6 +19,13 @@ public class Player : MonoBehaviour, IDamageable
     public float DodgeCoolTime;
     public float DodgeForce;
     public float DodgeGravity;
+    public float attack_waiting_time;
+    //3连击之间的等待时间，超过该时间后再次攻击，则从第一段攻击重新开始。
+
+    #endregion
+
+    #region player state variable
+
     [HideInInspector] public float HorizontalMoveInput;
     [HideInInspector] public float DodgeCoolTimer;
     [HideInInspector] public bool beginDodgeCoolTimer;
@@ -28,12 +35,21 @@ public class Player : MonoBehaviour, IDamageable
     [HideInInspector] public int MaxJumpCount;
     //[HideInInspector] public int AirState;
     //记录当前跳跃状态，0为未跳跃，1为上升，2为下降，3为即将落地
+    [HideInInspector] public int attack_count;
     [HideInInspector] public bool IsFacingRight;
     [HideInInspector] public bool IsFalling;
     [HideInInspector] public bool IsGround;
     [HideInInspector] public bool IsDodging;
     [HideInInspector] public bool CanDodge;
     [HideInInspector] public bool DodgeInput;
+    [HideInInspector] public bool is_attacking;
+    [HideInInspector] public bool attack_first_input;
+    [HideInInspector] public bool attack_input;
+    [HideInInspector] public bool is_checking_attack_input;
+
+    #endregion
+
+    #region ray cast variable
 
     [HideInInspector] public RaycastHit2D HitObject;
     // 这是被射线碰撞的结构体实例，包含有关碰撞的详细信息，如碰撞点的位置、碰撞点的表面法线、碰撞物体的引用
@@ -115,8 +131,13 @@ public class Player : MonoBehaviour, IDamageable
         IsDodging = false;
         CanDodge = true;
         DodgeInput = false;
+        attack_first_input = false;
+        attack_input = false;
+        is_attacking = false;
+        is_checking_attack_input = false;
         JumpCount = 0;
         MaxJumpCount = 2;
+        attack_count = 0;
 
         RayDirection = Vector2.down;
     }
@@ -259,6 +280,55 @@ public class Player : MonoBehaviour, IDamageable
     public void EndVerticalMoveCheck()
     {
         IsCheckingVerticalMoveInput = false;
+    }
+
+        void CheckAttackInput()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (attack_count == 0)
+            {
+                attack_first_input = true;
+            }
+            else
+            {
+                if (is_checking_attack_input)
+                {
+                    attack_input = true;
+                    //Debug.Log(attack_input);
+                }
+            }
+        }
+    }
+
+    public void BeginCheckAttackInput()
+    //call this method at the first frame of attack animation
+    {
+        is_checking_attack_input = true;
+    }
+
+    public IEnumerator EndCheckAttackInput()
+    //call this method at the last frame of attack animation
+    {
+        if (!attack_input)
+        {
+            yield return StartCoroutine(WaitOrInterruptAttack(attack_waiting_time));
+        }
+        //Debug.Log("end");
+        is_checking_attack_input = false;
+    }
+
+    public IEnumerator WaitOrInterruptAttack(float waitTime)
+    //attack wait timer
+    {
+        float elapsed_time = 0.0f;
+        while (elapsed_time < waitTime && !attack_input && attack_count != 3)
+        {
+            yield return null; 
+            //暂停协程，到下一帧再运行
+            elapsed_time += Time.deltaTime;
+            //Debug.Log("inside attack input " + attack_input);
+        }
     }
 
     #endregion
