@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1096856751544860101}
   - component: {fileID: -750448201813836753}
   - component: {fileID: 5445424486170747360}
-  - component: {fileID: 7186146047079750862}
   m_Layer: 0
   m_Name: Idle_0
   m_TagString: Untagged
@@ -101,12 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88171c8d68ad41f4aabed3f400bb5149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_speed: 0
-  attack_range: 0
-  detect_range: 0
+  move_speed: 2
+  attack_range: 2
+  detect_range: 2
   player_layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
 --- !u!50 &1096856751544860101
 Rigidbody2D:
   serializedVersion: 4
@@ -133,7 +132,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &-750448201813836753
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200,21 +199,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7186146047079750862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416367153036533895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88171c8d68ad41f4aabed3f400bb5149, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  move_speed: 0
-  attack_range: 0
-  detect_range: 0
-  player_layer:
-    serializedVersion: 2
-    m_Bits: 0
