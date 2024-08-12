@@ -42,7 +42,15 @@ public class PlayerIdleState : PlayerState
 
             player.ChangeAnimationState(Player.AnimationFirstJump);
         }
+        
+        // switch to Fall state
+        if (player.IsFalling == true)
+        {
+            player.StateMachine.ChangeState(player.FallState);
 
+            player.ChangeAnimationState(Player.AnimationFall);
+        }
+        
         // switch to Dodge state
         if (player.DodgeInput && player.CanDodge)
         {
@@ -52,7 +60,7 @@ public class PlayerIdleState : PlayerState
         }
 
         // switch to Attack state
-        if (player.attack_first_input || player.attack_first_input)
+        if (player.attack_first_input || player.attack_input)
         {
             playerStateMachine.ChangeState(player.AttackState);
         }
