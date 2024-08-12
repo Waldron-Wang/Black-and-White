@@ -32,13 +32,13 @@ public class PlayerAttackState : PlayerState
 
             case 2:
                 player.BeginCheckAttackInput();
-                player.ChangeAnimationState(Player.AnimationAttack1);
+                player.ChangeAnimationState(Player.AnimationAttack2);
                 Debug.Log("Enter second attack state");
                 break;
 
             case 3:
                 player.BeginCheckAttackInput();
-                player.ChangeAnimationState(Player.AnimationAttack1);
+                player.ChangeAnimationState(Player.AnimationAttack3);
                 Debug.Log("Enter third attack state");
                 break;
         }
@@ -85,11 +85,6 @@ public class PlayerAttackState : PlayerState
 
         if (IsStateEnd)
         {
-            if (player.attack_input)
-            {
-                playerStateMachine.ChangeState(player.AttackState);
-            }
-
             // switch to Idle state
             if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
             {
