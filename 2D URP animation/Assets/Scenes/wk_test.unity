@@ -218,7 +218,7 @@ MonoBehaviour:
   DodgeCoolTime: 0.4
   DodgeForce: 6
   DodgeGravity: 0.1
-  attack_waiting_time: 0
+  attack_waiting_time: 1
   HorizontalMoveInput: 0
   DodgeCoolTimer: 0
   beginDodgeCoolTimer: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   attack_first_input: 0
   attack_input: 0
   is_checking_attack_input: 0
+  is_attacking_end: 0
   RayOrigin: {x: 0, y: 0}
   RayDirection: {x: 0, y: 0}
   RayDistance: 0.55

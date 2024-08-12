@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,427 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Build Your Tree 2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 60
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fce72315e70e46d1840a3ac3e11a470
+      internalID: 1961921698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 56
+        width: 56
+        height: 308
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51b52945cf24c4e89ad534f0da751477
+      internalID: -592077683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 57
+        width: 60
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d8a247a90ac442aea6d05c8d97133ff
+      internalID: 1227829788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 55
+        width: 45
+        height: 315
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 420f154dfca2440879bd9081b95031e8
+      internalID: -1305632461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_4
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 185
+        width: 84
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ba2298052a042dcaa1a0daa28bc05a
+      internalID: 1758502382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_5
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 262
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d41dd56a45b64b6191b2f75816e1010
+      internalID: 111914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_6
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 257
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df765cfc6939f4a37aaad79032c725c6
+      internalID: -1930509961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_7
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 259
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b7eae6f3afb41229376e67891236b8
+      internalID: 1541590214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_8
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 261
+        width: 61
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7785209027c3640aaaa9974a57e164f4
+      internalID: 653234102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_9
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 256
+        width: 69
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16aca1ec4e25044319bf05d9e7880085
+      internalID: -549936406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_10
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 186
+        width: 99
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856fff05aa2d046c7bb67822e956e156
+      internalID: -607763609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_11
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 124
+        width: 82
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7d55d61206c4a37a28e6467a8b086f
+      internalID: 1246070306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_12
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 59
+        width: 88
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8e55ba45e654617b33d2680b407dbd
+      internalID: 279988897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_13
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 0
+        width: 87
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6395364e72974c0da079051525b06e3
+      internalID: 1442508437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_14
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 103
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75c7bddf88098414ea24683435bcab88
+      internalID: -91785274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_15
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 60
+        width: 83
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0f7c7c81d514754aadd990da7a1a28
+      internalID: -1098292379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_16
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 129
+        width: 80
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8479da5848c2940cc864df516d87f766
+      internalID: 1725004838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_17
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 190
+        width: 82
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f38e322ffd9448d4a4ccc75157abcd0
+      internalID: 1241649339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_18
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 187
+        width: 87
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 346cdc93cd48b40edb1841aed916449c
+      internalID: 488312903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Build Your Tree 2_19
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 47
+        width: 108
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97199023163b64c54a097b84a3dec537
+      internalID: -468607190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +526,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Build Your Tree 2_0: 1961921698
+      Build Your Tree 2_1: -592077683
+      Build Your Tree 2_10: -607763609
+      Build Your Tree 2_11: 1246070306
+      Build Your Tree 2_12: 279988897
+      Build Your Tree 2_13: 1442508437
+      Build Your Tree 2_14: -91785274
+      Build Your Tree 2_15: -1098292379
+      Build Your Tree 2_16: 1725004838
+      Build Your Tree 2_17: 1241649339
+      Build Your Tree 2_18: 488312903
+      Build Your Tree 2_19: -468607190
+      Build Your Tree 2_2: 1227829788
+      Build Your Tree 2_3: -1305632461
+      Build Your Tree 2_4: 1758502382
+      Build Your Tree 2_5: 111914
+      Build Your Tree 2_6: -1930509961
+      Build Your Tree 2_7: 1541590214
+      Build Your Tree 2_8: 653234102
+      Build Your Tree 2_9: -549936406
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

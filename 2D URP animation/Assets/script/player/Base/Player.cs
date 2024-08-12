@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IDamageable
     public float CurrentHealth { get; set; }
 
     #region Controller Variable
+
     public float RunSpeed;
     public float WalkSpeed;
     public float FirstJumpForce;
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour, IDamageable
     [HideInInspector] public bool attack_first_input;
     [HideInInspector] public bool attack_input;
     [HideInInspector] public bool is_checking_attack_input;
+    [HideInInspector] public bool is_attacking_end;
 
     #endregion
 
@@ -73,6 +75,7 @@ public class Player : MonoBehaviour, IDamageable
     public PlayerJumpState JumpState { get; set; }
     public PlayerFallState FallState { get; set; }
     public PlayerDodgeState DodgeState { get; set; }
+    public PlayerAttackState AttackState { get; set; }
 
     #endregion
 
@@ -97,7 +100,7 @@ public class Player : MonoBehaviour, IDamageable
 
     #endregion
 
-    #region Main Unity Function
+    #region Awake
 
     private void Awake()
     {
@@ -109,7 +112,12 @@ public class Player : MonoBehaviour, IDamageable
         JumpState = new PlayerJumpState(this, StateMachine);
         FallState = new PlayerFallState(this, StateMachine);
         DodgeState = new PlayerDodgeState(this, StateMachine);
+        AttackState = new PlayerAttackState(this, StateMachine);
     }
+
+    #endregion
+
+    #region Start
 
     private void Start()
     {
@@ -134,13 +142,18 @@ public class Player : MonoBehaviour, IDamageable
         attack_first_input = false;
         attack_input = false;
         is_attacking = false;
-        is_checking_attack_input = false;
+        is_checking_attack_input = true;
+        is_attacking_end = false;
         JumpCount = 0;
         MaxJumpCount = 2;
         attack_count = 0;
 
         RayDirection = Vector2.down;
     }
+
+    #endregion
+
+    #region Update
 
     private void Update()
     {
@@ -184,6 +197,28 @@ public class Player : MonoBehaviour, IDamageable
         // check horizontal move input
         HorizontalMoveInput = Input.GetAxisRaw("Horizontal");
 
+        // check attack input
+        CheckAttackInput();
+
+        // check is attack end
+        if (is_attacking_end)
+        {
+            is_attacking_end = false;
+            StartCoroutine(EndCheckAttackInput());
+        }
+
+        // check attack state
+        if (!attack_input && !is_checking_attack_input)
+        {
+            attack_count = 0;
+            is_attacking = false;
+        }
+        else if (attack_count == 3 && !is_attacking)
+        {
+            attack_count = 0;
+            is_attacking = false;
+        }
+
         // flip the player according to the direction he is facing
         if (HorizontalMoveInput > 0.01f && IsFacingRight == false)
         {
@@ -198,6 +233,10 @@ public class Player : MonoBehaviour, IDamageable
 
         StateMachine.CurrentPlayerState.FrameUpdate();
     }
+
+    #endregion
+
+    #region FixedUpdate
 
     private void FixedUpdate()
     {
@@ -282,22 +321,14 @@ public class Player : MonoBehaviour, IDamageable
         IsCheckingVerticalMoveInput = false;
     }
 
-        void CheckAttackInput()
+    void CheckAttackInput()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
             if (attack_count == 0)
-            {
                 attack_first_input = true;
-            }
-            else
-            {
-                if (is_checking_attack_input)
-                {
-                    attack_input = true;
-                    //Debug.Log(attack_input);
-                }
-            }
+            else if (is_checking_attack_input)
+                attack_input = true;
         }
     }
 
@@ -319,15 +350,13 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     public IEnumerator WaitOrInterruptAttack(float waitTime)
-    //attack wait timer
     {
         float elapsed_time = 0.0f;
         while (elapsed_time < waitTime && !attack_input && attack_count != 3)
         {
-            yield return null; 
+            yield return null;
             //暂停协程，到下一帧再运行
             elapsed_time += Time.deltaTime;
-            //Debug.Log("inside attack input " + attack_input);
         }
     }
 

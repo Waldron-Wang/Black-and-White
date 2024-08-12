@@ -50,6 +50,12 @@ public class PlayerIdleState : PlayerState
 
             player.ChangeAnimationState(Player.AnimationDodge);
         }
+
+        // switch to Attack state
+        if (player.attack_first_input || player.attack_first_input)
+        {
+            playerStateMachine.ChangeState(player.AttackState);
+        }
     }
 }
 
