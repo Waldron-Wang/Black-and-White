@@ -232,6 +232,8 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         StateMachine.CurrentPlayerState.FrameUpdate();
+
+        Debug.Log("Is ground "+ IsGround);
     }
 
     #endregion
@@ -305,6 +307,14 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.tag == "platforms")
             IsGround = true;
+        Debug.Log("Collision!");    
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "platforms")
+            IsGround = false;
+        Debug.Log("gun!");
     }
 
     #endregion
