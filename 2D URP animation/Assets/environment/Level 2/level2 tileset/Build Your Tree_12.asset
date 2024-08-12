@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: tileset_34
+  m_Name: Build Your Tree_12
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -978325896, guid: 7582da1e5903b7545a52bd9b6ed9bbac, type: 3}
+  m_Sprite: {fileID: 387947482, guid: 5d5a9c77023909244817d6f5b9545e15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,4 +33,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
+  m_ColliderType: 1
