@@ -163,8 +163,8 @@ public class Player : MonoBehaviour, IDamageable
                 VerticalMoveInput = true;
 
         // check is ground
-        if (PlayerRigidbody.velocity.y > 0.01f || PlayerRigidbody.velocity.y < -0.01f)
-            IsGround = false;
+        //if (PlayerRigidbody.velocity.y > 0.01f || PlayerRigidbody.velocity.y < -0.01f)
+            //IsGround = false;
 
         // reset Jump Count
         if (IsGround == true)
