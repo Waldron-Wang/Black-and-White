@@ -4,8 +4,9 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    float MaxHealth { get; set; }
-    float CurrentHealth { get; set; }
-    void Damage(float damageAmount);
+    int MaxHealth { get; set; }
+    int Health { get; set; }
+    void Damage(int damageAmount);
+    void Heal(int healAmount);
     void Die();
 }

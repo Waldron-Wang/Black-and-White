@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour
 {
     public Rigidbody2D PlayerRigidbody;
     public Transform PlayerTransform;
-    public float MaxHealth { get; set; }
-    public float CurrentHealth { get; set; }
 
     #region Controller Variable
 
@@ -22,6 +20,7 @@ public class Player : MonoBehaviour, IDamageable
     public float DodgeGravity;
     public float attack_waiting_time;
     //3连击之间的等待时间，超过该时间后再次攻击，则从第一段攻击重新开始。
+
 
     #endregion
 
@@ -121,8 +120,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        CurrentHealth = MaxHealth;
-
         StateMachine.InitializeState(IdleState);
 
         PlayerRigidbody = GetComponent<Rigidbody2D>();
@@ -161,10 +158,6 @@ public class Player : MonoBehaviour, IDamageable
         if (IsCheckingVerticalMoveInput && JumpCount < 2)
             if (Input.GetButtonDown("Jump"))
                 VerticalMoveInput = true;
-
-        // check is ground
-        //if (PlayerRigidbody.velocity.y > 0.01f || PlayerRigidbody.velocity.y < -0.01f)
-            //IsGround = false;
 
         // reset Jump Count
         if (IsGround == true)
@@ -247,21 +240,6 @@ public class Player : MonoBehaviour, IDamageable
 
     #endregion
 
-    public void Damage(float damageAmount)
-    {
-        CurrentHealth -= damageAmount;
-
-        if (CurrentHealth <= 0f)
-        {
-            Die();
-        }
-    }
-
-    public void Die()
-    {
-        throw new System.NotImplementedException();
-    }
-
     #region Animation Manager
 
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
@@ -272,6 +250,9 @@ public class Player : MonoBehaviour, IDamageable
     public enum AnimationTriggerType
     {
         PlayerDamaged,
+        PlayerDamage,
+        EnemyDamaged,
+        EnemyDamage,
     }
 
     public void ChangeAnimationState(string new_state, float start_time = 0f)
