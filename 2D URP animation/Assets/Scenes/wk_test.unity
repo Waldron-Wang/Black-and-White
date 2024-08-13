@@ -738,7 +738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3208600953804976312, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.659
+      value: -0.735
       objectReference: {fileID: 0}
     - target: {fileID: 3208600953804976312, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -788,6 +788,26 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1564193563
       objectReference: {fileID: 0}
+    - target: {fileID: 6940959362924846847, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.38513082
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940959362924846847, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.89209664
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940959362924846847, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940959362924846847, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.030807942
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940959362924846847, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.008440375
+      objectReference: {fileID: 0}
     - target: {fileID: 7443049634835099596, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
       propertyPath: attack_waiting_time
       value: 1
@@ -805,7 +825,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3208600953804976312, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 576341937}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3573572753224947930, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 363803259}
   m_SourcePrefab: {fileID: 100100000, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
 --- !u!1 &163125805
 GameObject:
@@ -1327,6 +1350,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1831676659186565197, guid: 901ae32bf440d7e4d9a94431f7875fae, type: 3}
   m_PrefabInstance: {fileID: 1637675594}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &290194154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3573572753224947930, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+  m_PrefabInstance: {fileID: 158768917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &290567216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1657,6 +1685,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3208600953804976312, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
   m_PrefabInstance: {fileID: 158768917}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &363803259
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290194154}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.89}
+  m_EdgeRadius: 0
 --- !u!1001 &368498233
 PrefabInstance:
   m_ObjectHideFlags: 0

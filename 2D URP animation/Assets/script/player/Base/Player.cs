@@ -145,6 +145,8 @@ public class Player : MonoBehaviour
         MaxJumpCount = 2;
         attack_count = 0;
 
+        RayOrigin = new Vector2(transform.position.x, transform.position.y);
+        RayDistance = 0.55f;
         RayDirection = Vector2.down;
     }
 
@@ -182,8 +184,11 @@ public class Player : MonoBehaviour
             DodgeCoolTimer -= Time.deltaTime;
 
         // check is falling
-        if (PlayerRigidbody.velocity.y < 0.05f && !IsGround)
+        if (PlayerRigidbody.velocity.y < 0f && !IsGround)
+        {
             IsFalling = true;
+            Debug.Log(PlayerRigidbody.velocity.y);
+        }
         else
             IsFalling = false;
 
@@ -225,8 +230,6 @@ public class Player : MonoBehaviour
         }
 
         StateMachine.CurrentPlayerState.FrameUpdate();
-
-        Debug.Log("Is ground "+ IsGround);
     }
 
     #endregion
@@ -288,7 +291,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "platforms")
             IsGround = true;
-        Debug.Log("Collision!");    
+        Debug.Log("Collision!");
     }
 
     private void OnCollisionExit2D(Collision2D collision)
