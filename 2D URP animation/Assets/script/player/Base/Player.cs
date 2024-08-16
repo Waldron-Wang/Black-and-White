@@ -187,7 +187,6 @@ public class Player : MonoBehaviour
         if (PlayerRigidbody.velocity.y < 0f && !IsGround)
         {
             IsFalling = true;
-            Debug.Log(PlayerRigidbody.velocity.y);
         }
         else
             IsFalling = false;
@@ -291,14 +290,12 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "platforms")
             IsGround = true;
-        Debug.Log("Collision!");
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "platforms")
             IsGround = false;
-        Debug.Log("gun!");
     }
 
     #endregion
