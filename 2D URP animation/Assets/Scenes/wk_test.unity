@@ -139166,7 +139166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192d1d5dbf61a409fb738b2986cefcfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: {fileID: 0}
 --- !u!1001 &2085404409
 PrefabInstance:
   m_ObjectHideFlags: 0

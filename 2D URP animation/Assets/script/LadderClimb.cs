@@ -41,7 +41,7 @@ public class LadderClimb : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnColliderEnter(Collider other)
     {
         // 检测玩家是否进入梯子区域
         Debug.Log("OnTriggerEnter");

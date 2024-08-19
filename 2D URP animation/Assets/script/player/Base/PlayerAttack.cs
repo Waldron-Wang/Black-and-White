@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
     {
         int attackIndex = (colliderIndex - 1) / 3;
         colliderIndex = (colliderIndex - 1) % 3;
-        
+
         if (attackIndex >= 0 && attackIndex < attackColliders.Length)
         {
             if (colliderIndex >= 0 && colliderIndex < attackColliders[attackIndex].Length)
@@ -71,17 +71,23 @@ public class PlayerAttack : MonoBehaviour
     // detect enemies
     private void OnTriggerEnter2D(Collider2D other)
     {
-        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
-
-        if (damageable != null)
+        TestEnemy testEnemy = other.gameObject.GetComponent<TestEnemy>();
+        if (testEnemy != null)
         {
-            //damageable.Damage(DamageAmount());
-            UnitHealth enemyHealth = other.gameObject.GetComponent<TestEnemy>().enemyHealth;
+            UnitHealth enemyHealth = testEnemy.enemyHealth;
             if (enemyHealth != null)
             {
                 enemyHealth.Damage(DamageAmount());
                 Debug.Log("enemy health: " + enemyHealth.Health);
             }
+            else
+            {
+                Debug.LogError("enemyHealth 在 TestEnemy 中为 null！");
+            }
+        }
+        else
+        {
+            Debug.LogError("在碰撞的对象上找不到 TestEnemy 组件。");
         }
     }
 }
