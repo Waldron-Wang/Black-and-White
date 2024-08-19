@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public float DodgeGravity;
     public float attack_waiting_time;
     //3连击之间的等待时间，超过该时间后再次攻击，则从第一段攻击重新开始。
-
+    public float ClimbSpeed;
 
     #endregion
 
@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool attack_input;
     [HideInInspector] public bool is_checking_attack_input;
     [HideInInspector] public bool is_attacking_end;
+    [HideInInspector] public bool CanClimb;
+    [HideInInspector] public bool isClimbing;
 
     #endregion
 
@@ -75,6 +77,7 @@ public class Player : MonoBehaviour
     public PlayerFallState FallState { get; set; }
     public PlayerDodgeState DodgeState { get; set; }
     public PlayerAttackState AttackState { get; set; }
+    public PlayerClimbState ClimbState { get; set; }
 
     #endregion
 
@@ -112,6 +115,7 @@ public class Player : MonoBehaviour
         FallState = new PlayerFallState(this, StateMachine);
         DodgeState = new PlayerDodgeState(this, StateMachine);
         AttackState = new PlayerAttackState(this, StateMachine);
+        ClimbState = new PlayerClimbState(this, StateMachine);
     }
 
     #endregion
@@ -128,6 +132,8 @@ public class Player : MonoBehaviour
 
         DodgeCoolTimer = DodgeCoolTime;
 
+        CanClimb = false;
+        isClimbing = false;
         IsCheckingVerticalMoveInput = true;
         beginDodgeCoolTimer = false;
         IsFacingRight = true;
@@ -296,6 +302,21 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "platforms")
             IsGround = false;
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {   
+        if (other.CompareTag("Ladder"))
+        {
+            isClimbing = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+
+        if (other.CompareTag("Ladder")) 
+        {
+            isClimbing = false;
+        }
     }
 
     #endregion
