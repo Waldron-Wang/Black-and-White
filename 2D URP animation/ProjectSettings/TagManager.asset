@@ -6,6 +6,7 @@ TagManager:
   tags:
   - platforms
   - Enemy
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Background
-  - 
+  - Ladder
   - 
   - 
   - 
