@@ -296,7 +296,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 30
+  m_SortingOrder: 28
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -5872,6 +5872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 644190183}
   - component: {fileID: 644190182}
+  - component: {fileID: 644190185}
   - component: {fileID: 644190184}
   m_Layer: 7
   m_Name: objects_0
@@ -5979,7 +5980,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009852409, y: -0.029558182}
+  m_Offset: {x: -0.061909437, y: -0.09581375}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5990,8 +5991,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1402779, y: 1.9061699}
+  m_Size: {x: 2.6830726, y: 2.038681}
   m_EdgeRadius: 0
+--- !u!114 &644190185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644190181}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74bb93b6edda544886c494c196d5ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &758551368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6002,11 +6015,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3208600953804976312, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.61
+      value: 5.573
       objectReference: {fileID: 0}
     - target: {fileID: 3208600953804976312, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -52.45
+      value: -56.026
       objectReference: {fileID: 0}
     - target: {fileID: 3208600953804976312, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
       propertyPath: m_LocalPosition.z

@@ -64,6 +64,10 @@ public class PlayerIdleState : PlayerState
         {
             playerStateMachine.ChangeState(player.AttackState);
         }
+        if(player.isClimbing)
+        {
+            playerStateMachine.ChangeState(player.ClimbState);
+        }
     }
 }
 

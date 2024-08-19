@@ -16,6 +16,7 @@ public class LadderClimb : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log("Update" + isClimbing);
         // 检测玩家是否在梯子区域
         if (isClimbing)
         {
@@ -41,7 +42,7 @@ public class LadderClimb : MonoBehaviour
         }
     }
 
-    void OnColliderEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         // 检测玩家是否进入梯子区域
         Debug.Log("OnTriggerEnter");
@@ -55,14 +56,25 @@ public class LadderClimb : MonoBehaviour
     // {   
     //     Debug.Log("OnTriggerStay");
     //     // 检测玩家是否进入梯子区域
+    //     Debug.Log("OnTriggerEnter");
     //     if (other.CompareTag("Ladder"))
     //     {
     //         isClimbing = true;
     //         ladder = other.transform;
     //     }
     // }
+    void OnTriggerStay2D(Collider2D other)
+    {   
+        Debug.Log("OnTriggerStay");
+        // 检测玩家是否进入梯子区域
+        if (other.CompareTag("Ladder"))
+        {
+            isClimbing = true;
+            ladder = other.transform;
+        }
+    }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("OnTriggerExit");
         // 检测玩家是否离开梯子区域
