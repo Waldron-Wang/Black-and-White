@@ -5,6 +5,7 @@ using UnityEngine;
 public class TestEnemy : MonoBehaviour
 {
     public UnitHealth enemyHealth = new UnitHealth(10, 10);
+    public int enemyDefence = 2;
 
     void Awake()
     {

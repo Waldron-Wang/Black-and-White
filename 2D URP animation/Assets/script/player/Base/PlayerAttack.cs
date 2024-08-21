@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     Collider2D[][] attackColliders;
-    Collider2D[] HitObjects;
-
     Player player;
 
     private void Start()
@@ -59,13 +57,9 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private int DamageAmount()
+    private int DamageAmount(int attackPower, int Defence)
     {
-        int damageAmount;
-
-        damageAmount = 1;
-
-        return damageAmount;
+        return Mathf.Max(attackPower - Defence, 0);
     }
 
     // detect enemies
@@ -77,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
             UnitHealth enemyHealth = testEnemy.enemyHealth;
             if (enemyHealth != null)
             {
-                enemyHealth.Damage(DamageAmount());
+                enemyHealth.Damage(DamageAmount(player.attackPower, testEnemy.enemyDefence));
                 Debug.Log("enemy health: " + enemyHealth.Health);
             }
             else

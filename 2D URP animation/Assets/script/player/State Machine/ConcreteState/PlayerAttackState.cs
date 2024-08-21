@@ -20,8 +20,6 @@ public class PlayerAttackState : PlayerState
         player.attack_first_input = false;
         player.attack_count++;
 
-        Debug.Log("attack count: " + player.attack_count);
-
         switch (player.attack_count)
         {
             case 1:
@@ -54,6 +52,9 @@ public class PlayerAttackState : PlayerState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        Debug.Log("attack count: " + player.attack_count);
+        Debug.Log("attack input: " + player.attack_input);
+        Debug.Log("is checking attack input: " + player.is_checking_attack_input);
 
         switch (player.attack_count)
         {

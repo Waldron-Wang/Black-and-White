@@ -24,6 +24,13 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region Player variable
+
+    public int attackPower = 5;
+    public int Defence = 5;
+
+    #endregion
+
     #region player state variable
 
     [HideInInspector] public float HorizontalMoveInput;
@@ -69,15 +76,15 @@ public class Player : MonoBehaviour
 
     #region State Machine Variable
 
-    public PlayerStateMachine StateMachine { get; set; }
-    public PlayerIdleState IdleState { get; set; }
-    public PlayerRunState RunState { get; set; }
-    public PlayerWalkState WalkState { get; set; }
-    public PlayerJumpState JumpState { get; set; }
-    public PlayerFallState FallState { get; set; }
-    public PlayerDodgeState DodgeState { get; set; }
-    public PlayerAttackState AttackState { get; set; }
-    public PlayerClimbState ClimbState { get; set; }
+    [HideInInspector] public PlayerStateMachine StateMachine { get; set; }
+    [HideInInspector] public PlayerIdleState IdleState { get; set; }
+    [HideInInspector] public PlayerRunState RunState { get; set; }
+    [HideInInspector] public PlayerWalkState WalkState { get; set; }
+    [HideInInspector] public PlayerJumpState JumpState { get; set; }
+    [HideInInspector] public PlayerFallState FallState { get; set; }
+    [HideInInspector] public PlayerDodgeState DodgeState { get; set; }
+    [HideInInspector] public PlayerAttackState AttackState { get; set; }
+    [HideInInspector] public PlayerClimbState ClimbState { get; set; }
 
     #endregion
 
