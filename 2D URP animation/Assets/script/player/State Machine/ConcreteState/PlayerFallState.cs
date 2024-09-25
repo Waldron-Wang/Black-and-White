@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFallState : PlayerState
+public class PlayerFallState : AbstractState
 {
-    public PlayerFallState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerFallState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
     {
     }
 

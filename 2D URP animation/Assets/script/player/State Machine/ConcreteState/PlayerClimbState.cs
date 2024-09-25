@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerClimbState : PlayerState
+public class PlayerClimbState : AbstractState
 {
-    public PlayerClimbState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerClimbState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
     {
     }
 

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerJumpState : PlayerState
+public class PlayerJumpState : AbstractState
 {
     bool HaveJumped = false;
     bool IsChangeDirection = false;
     float InitialHorizontalSpeed;
     float CurrentHorizontalSpeed;
 
-    public PlayerJumpState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerJumpState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
     {
     }
 

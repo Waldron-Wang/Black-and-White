@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public abstract class PlayerState
+public abstract class AbstractState
 {
     protected Player player;
-    protected PlayerStateMachine playerStateMachine;
+    protected StateMachine playerStateMachine;
 
-    public PlayerState(Player player, PlayerStateMachine playerStateMachine)
+    public AbstractState(Player player, StateMachine playerStateMachine)
     {
         this.player = player;
         this.playerStateMachine = playerStateMachine;

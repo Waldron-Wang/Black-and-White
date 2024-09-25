@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateMachine
+public class StateMachine
 {
-    public PlayerState CurrentPlayerState { get; set; }
+    public AbstractState CurrentPlayerState { get; set; }
 
-    public void InitializeState(PlayerState StartingState)
+    public void InitializeState(AbstractState StartingState)
     {
         CurrentPlayerState = StartingState;
         CurrentPlayerState.EnterState();
     }
 
-    public void ChangeState(PlayerState NewState)
+    public void ChangeState(AbstractState NewState)
     {
         CurrentPlayerState.ExitState();
         CurrentPlayerState = NewState;

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : PlayerState
+public class PlayerAttackState : AbstractState
 {
     bool IsStateEnd;
 
-    public PlayerAttackState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerAttackState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
     {
     }
 

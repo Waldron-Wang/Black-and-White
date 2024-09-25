@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDodgeState : PlayerState
+public class PlayerDodgeState : AbstractState
 {
     float original_gravity;
     float DodgeTimer;
 
-    public PlayerDodgeState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerDodgeState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
     {
     }
 

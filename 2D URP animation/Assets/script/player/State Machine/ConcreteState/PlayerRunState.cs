@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRunState : PlayerState
+public class PlayerRunState : AbstractState
 {
-    public PlayerRunState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerRunState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
     {
     }
 
