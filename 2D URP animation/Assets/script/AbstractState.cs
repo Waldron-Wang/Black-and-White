@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public abstract class AbstractState
+public abstract class AbstractState<T> where T : MonoBehaviour
 {
-    protected Player player;
-    protected StateMachine playerStateMachine;
-
-    public AbstractState(Player player, StateMachine playerStateMachine)
+    protected T character;
+    protected Player player
     {
-        this.player = player;
-        this.playerStateMachine = playerStateMachine;
+        get { return character as Player;}
+    }
+    protected Enemy enemy
+    {
+        get { return character as Enemy;}
+    }
+    protected StateMachine<T> characterStateMachine;
+
+    public AbstractState(T character, StateMachine<T> characterStateMachine)
+    {
+        this.character = character;
+        this.characterStateMachine = characterStateMachine;
     }
 
     public virtual void EnterState() {}

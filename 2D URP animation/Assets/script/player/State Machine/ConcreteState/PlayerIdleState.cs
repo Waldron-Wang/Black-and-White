@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : AbstractState
+public class PlayerIdleState : AbstractState<Player>
 {
-    public PlayerIdleState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerIdleState(Player player, StateMachine<Player> characterStateMachine) : base(player, characterStateMachine)
     {
     }
     
@@ -30,7 +30,7 @@ public class PlayerIdleState : AbstractState
         // switch to run state
         if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
         {
-            playerStateMachine.ChangeState(player.RunState);
+            characterStateMachine.ChangeState(player.RunState);
 
             player.ChangeAnimationState(Player.AnimationRun);
         }
@@ -38,7 +38,7 @@ public class PlayerIdleState : AbstractState
         // switch to jump state
         if (player.VerticalMoveInput  == true)
         {
-            playerStateMachine.ChangeState(player.JumpState);
+            characterStateMachine.ChangeState(player.JumpState);
 
             player.ChangeAnimationState(Player.AnimationFirstJump);
         }
@@ -54,7 +54,7 @@ public class PlayerIdleState : AbstractState
         // switch to Dodge state
         if (player.DodgeInput && player.CanDodge)
         {
-            playerStateMachine.ChangeState(player.DodgeState);
+            characterStateMachine.ChangeState(player.DodgeState);
 
             player.ChangeAnimationState(Player.AnimationDodge);
         }
@@ -62,11 +62,11 @@ public class PlayerIdleState : AbstractState
         // switch to Attack state
         if (player.attack_first_input || player.attack_input)
         {
-            playerStateMachine.ChangeState(player.AttackState);
+            characterStateMachine.ChangeState(player.AttackState);
         }
         if(player.isClimbing)
         {
-            playerStateMachine.ChangeState(player.ClimbState);
+            characterStateMachine.ChangeState(player.ClimbState);
         }
     }
 }

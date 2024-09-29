@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : AbstractState
+public class PlayerAttackState : AbstractState<Player>
 {
     bool IsStateEnd;
 
-    public PlayerAttackState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerAttackState(Player player, StateMachine<Player> characterStateMachine) : base(player, characterStateMachine)
     {
     }
 
@@ -89,7 +89,7 @@ public class PlayerAttackState : AbstractState
             // switch to Idle state
             if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
             {
-                playerStateMachine.ChangeState(player.IdleState);
+                characterStateMachine.ChangeState(player.IdleState);
 
                 player.ChangeAnimationState(Player.AnimationIdle);
             }
@@ -97,7 +97,7 @@ public class PlayerAttackState : AbstractState
             // switch to run state
             if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
             {
-                playerStateMachine.ChangeState(player.RunState);
+                characterStateMachine.ChangeState(player.RunState);
 
                 player.ChangeAnimationState(Player.AnimationRun);
             }

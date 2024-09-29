@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFallState : AbstractState
+public class PlayerFallState : AbstractState<Player>
 {
-    public PlayerFallState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerFallState(Player player, StateMachine<Player> characterStateMachine) : base(player, characterStateMachine)
     {
     }
 
@@ -37,7 +37,7 @@ public class PlayerFallState : AbstractState
         // switch to Dodge state
         if (player.DodgeInput && player.CanDodge)
         {
-            playerStateMachine.ChangeState(player.DodgeState);
+            characterStateMachine.ChangeState(player.DodgeState);
 
             player.ChangeAnimationState(Player.AnimationDodge);
         }

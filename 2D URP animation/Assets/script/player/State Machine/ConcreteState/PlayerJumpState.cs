@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerJumpState : AbstractState
+public class PlayerJumpState : AbstractState<Player>
 {
     bool HaveJumped = false;
     bool IsChangeDirection = false;
     float InitialHorizontalSpeed;
     float CurrentHorizontalSpeed;
 
-    public PlayerJumpState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerJumpState(Player player, StateMachine<Player> characterStateMachine) : base(player, characterStateMachine)
     {
     }
 
@@ -76,7 +76,7 @@ public class PlayerJumpState : AbstractState
          // switch to Dodge state
         if (player.DodgeInput && player.CanDodge)
         {
-            playerStateMachine.ChangeState(player.DodgeState);
+            characterStateMachine.ChangeState(player.DodgeState);
 
             player.ChangeAnimationState(Player.AnimationDodge);
         }

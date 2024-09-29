@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
     #region State Machine Variable
 
-    [HideInInspector] public StateMachine StateMachine { get; set; }
+    [HideInInspector] public StateMachine<Player> StateMachine { get; set; }
     [HideInInspector] public PlayerIdleState IdleState { get; set; }
     [HideInInspector] public PlayerRunState RunState { get; set; }
     [HideInInspector] public PlayerWalkState WalkState { get; set; }
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        StateMachine = new StateMachine();
+        StateMachine = new StateMachine<Player>();
 
         IdleState = new PlayerIdleState(this, StateMachine);
         RunState = new PlayerRunState(this, StateMachine);

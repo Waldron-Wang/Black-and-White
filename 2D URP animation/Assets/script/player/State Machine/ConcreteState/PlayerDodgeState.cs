@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDodgeState : AbstractState
+public class PlayerDodgeState : AbstractState<Player>
 {
     float original_gravity;
     float DodgeTimer;
 
-    public PlayerDodgeState(Player player, StateMachine playerStateMachine) : base(player, playerStateMachine)
+    public PlayerDodgeState(Player player, StateMachine<Player> characterStateMachine) : base(player, characterStateMachine)
     {
     }
 
@@ -49,7 +49,7 @@ public class PlayerDodgeState : AbstractState
             // switch to idle state
             if (player.IsGround && player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
             {
-                playerStateMachine.ChangeState(player.IdleState);
+                characterStateMachine.ChangeState(player.IdleState);
 
                 player.ChangeAnimationState(Player.AnimationIdle);
             }
@@ -57,7 +57,7 @@ public class PlayerDodgeState : AbstractState
             // switch to run state
             if (player.IsGround && (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f))
             {
-                playerStateMachine.ChangeState(player.RunState);
+                characterStateMachine.ChangeState(player.RunState);
 
                 player.ChangeAnimationState(Player.AnimationRun);
             }
