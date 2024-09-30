@@ -47,6 +47,7 @@ public class PlayerAttackState : AbstractState<Player>
         base.ExitState();
 
         player.is_attacking_end = true;
+        player.is_attacking = false;
     }
 
     public override void FrameUpdate()
@@ -61,7 +62,6 @@ public class PlayerAttackState : AbstractState<Player>
             case 1:
                 if (!player.IsAnimationPlaying(Player.AnimationAttack1))
                 {
-                    player.is_attacking = false;
                     IsStateEnd = true;
                     Debug.Log("Is state end 1: " + IsStateEnd);
                 }
@@ -69,7 +69,6 @@ public class PlayerAttackState : AbstractState<Player>
             case 2:
                 if (!player.IsAnimationPlaying(Player.AnimationAttack2))
                 {
-                    player.is_attacking = false;
                     IsStateEnd = true;
                     Debug.Log("Is state end 2: " + IsStateEnd);
                 }
@@ -77,7 +76,6 @@ public class PlayerAttackState : AbstractState<Player>
             case 3:
                 if (!player.IsAnimationPlaying(Player.AnimationAttack3))
                 {
-                    player.is_attacking = false;
                     IsStateEnd = true;
                     Debug.Log("Is state end 3: " + IsStateEnd);
                 }

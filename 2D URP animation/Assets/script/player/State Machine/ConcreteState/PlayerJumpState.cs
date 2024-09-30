@@ -18,9 +18,9 @@ public class PlayerJumpState : AbstractState<Player>
     {
         base.EnterState();
 
-        if (player.JumpCount == 1)
+        if (player.JumpCount == 0)
             Debug.Log("Enter First Jump state");
-        else
+        else if (player.JumpCount == 1)
             Debug.Log("Enter Second Jump state");
 
         player.BeginVerticalMoveCheck();

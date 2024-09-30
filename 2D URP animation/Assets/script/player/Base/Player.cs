@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     // 射线的起始点
     [HideInInspector] public Vector2 RayDirection;
     // 射线的方向
-    [HideInInspector] public float RayDistance;
+    public float RayDistance;
     // 射线的长度,同时也是人物开始进入jump_state 3时的离地面的距离
     public LayerMask RayLayer;
     // 使射线只检测30层里的碰撞ti
@@ -158,8 +158,6 @@ public class Player : MonoBehaviour
         MaxJumpCount = 2;
         attack_count = 0;
 
-        RayOrigin = new Vector2(transform.position.x, transform.position.y);
-        RayDistance = 0.55f;
         RayDirection = Vector2.down;
     }
 
@@ -173,6 +171,18 @@ public class Player : MonoBehaviour
         if (IsCheckingVerticalMoveInput && JumpCount < 2)
             if (Input.GetButtonDown("Jump"))
                 VerticalMoveInput = true;
+
+        RayOrigin = new Vector2(transform.position.x, transform.position.y);
+
+        // check is falling
+        if (PlayerRigidbody.velocity.y < 0f && !IsGround)
+        {
+            HitObject = Physics2D.Raycast(RayOrigin, RayDirection, RayDistance, RayLayer);
+            if (HitObject.collider == null)
+                IsFalling = true;
+        }
+        else
+            IsFalling = false;
 
         // reset Jump Count
         if (IsGround == true)
@@ -196,14 +206,6 @@ public class Player : MonoBehaviour
         if (beginDodgeCoolTimer)
             DodgeCoolTimer -= Time.deltaTime;
 
-        // check is falling
-        if (PlayerRigidbody.velocity.y < 0f && !IsGround)
-        {
-            IsFalling = true;
-        }
-        else
-            IsFalling = false;
-
         // check horizontal move input
         HorizontalMoveInput = Input.GetAxisRaw("Horizontal");
 
@@ -217,17 +219,7 @@ public class Player : MonoBehaviour
             StartCoroutine(EndCheckAttackInput());
         }
 
-        // check attack state
-        if (!attack_input && !is_checking_attack_input)
-        {
-            attack_count = 0;
-            is_attacking = false;
-        }
-        else if (attack_count == 3 && !is_attacking)
-        {
-            attack_count = 0;
-            is_attacking = false;
-        }
+
 
         // flip the player according to the direction he is facing
         if (HorizontalMoveInput > 0.01f && IsFacingRight == false)
@@ -242,6 +234,18 @@ public class Player : MonoBehaviour
         }
 
         StateMachine.CurrentPlayerState.FrameUpdate();
+
+        // check attack state
+        if (!attack_input && !is_checking_attack_input)
+        {
+            attack_count = 0;
+            is_attacking = false;
+        }
+        else if (attack_count == 3 && !is_attacking)
+        {
+            attack_count = 0;
+            is_attacking = false;
+        }
     }
 
     #endregion
@@ -311,7 +315,7 @@ public class Player : MonoBehaviour
             IsGround = false;
     }
     private void OnTriggerStay2D(Collider2D other)
-    {   
+    {
         if (other.CompareTag("Ladder"))
         {
             isClimbing = true;
@@ -320,7 +324,7 @@ public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
 
-        if (other.CompareTag("Ladder")) 
+        if (other.CompareTag("Ladder"))
         {
             isClimbing = false;
         }
