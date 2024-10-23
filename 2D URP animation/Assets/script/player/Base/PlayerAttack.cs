@@ -63,25 +63,25 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // detect enemies
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        TestEnemy testEnemy = other.gameObject.GetComponent<TestEnemy>();
-        if (testEnemy != null)
-        {
-            UnitHealth enemyHealth = testEnemy.enemyHealth;
-            if (enemyHealth != null)
-            {
-                enemyHealth.Damage(DamageAmount(player.attackPower, testEnemy.enemyDefence));
-                Debug.Log("enemy health: " + enemyHealth.Health);
-            }
-            else
-            {
-                Debug.LogError("enemyHealth 在 TestEnemy 中为 null！");
-            }
-        }
-        else
-        {
-            Debug.LogError("在碰撞的对象上找不到 TestEnemy 组件。");
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     TestEnemy testEnemy = other.gameObject.GetComponent<TestEnemy>();
+    //     if (testEnemy != null)
+    //     {
+    //         UnitHealth enemyHealth = testEnemy.enemyHealth;
+    //         if (enemyHealth != null)
+    //         {
+    //             enemyHealth.Damage(DamageAmount(player.attackPower, testEnemy.enemyDefence));
+    //             Debug.Log("enemy health: " + enemyHealth.Health);
+    //         }
+    //         else
+    //         {
+    //             Debug.LogError("enemyHealth 在 TestEnemy 中为 null！");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("在碰撞的对象上找不到 TestEnemy 组件。");
+    //     }
+    // }
 }

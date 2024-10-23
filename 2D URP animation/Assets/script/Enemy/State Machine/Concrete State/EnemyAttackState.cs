@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackState : MonoBehaviour
+public class EnemyAttackState : AbstractState<Enemy>
 {
-    // Start is called before the first frame update
-    void Start()
+    public EnemyAttackState(Enemy character, StateMachine<Enemy> characterStateMachine) : base(character, characterStateMachine)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

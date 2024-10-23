@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class EnemyPatrolState : AbstractState<Enemy>
 {
-    RaycastHit2D HitObject1;
-    RaycastHit2D HitObject2;
-    Vector2 RayOrigin1;
-    Vector2 RayOrigin2;
-    Vector2 RayDirection1;
-    Vector2 RayDirection2;
-    float RayDistance1;
-    float RayDistance2;
-    bool ShouldStopMove;
-    
+    public RaycastHit2D groundHit;
+    public RaycastHit2D wallHit;
+    Vector2 groundRayOrigin;
+    Vector2 wallRayOrigin;
+    Vector2 groundRayDirection;
+    Vector2 wallRayDirection;
+    float groundRayDistance;
+    float wallRayDistance;
+    bool shouldStopMove;
+    bool isWaiting;
+
     public EnemyPatrolState(Enemy enemy, StateMachine<Enemy> characterStateMachine) : base(enemy, characterStateMachine)
     {
-        RayDistance1 = 0.6f;
-        RayDistance2 = 0.5f;
-        RayDirection1 = Vector2.down;
-        RayDirection2 = Vector2.right;
+        groundRayDistance = 0.6f;
+        wallRayDistance = 0.5f;
+        groundRayDirection = Vector2.down;
+        wallRayDirection = Vector2.right;
 
-        ShouldStopMove = false;
+        shouldStopMove = false;
+        isWaiting = false;
     }
 
     public override void EnterState()
@@ -38,20 +40,62 @@ public class EnemyPatrolState : AbstractState<Enemy>
     {
         base.FrameUpdate();
 
-        RayOrigin1 = new Vector2(enemy.enemyTransform.position.x, enemy.enemyTransform.position.y);
-        RayOrigin1 = new Vector2(enemy.enemyTransform.position.x, enemy.enemyTransform.position.y);
+        groundRayOrigin = new Vector2(
+            character.enemyTransform.position.x + (character.IsFacingRight ? 0.5f : -0.5f),
+            character.enemyTransform.position.y
+        );
+        wallRayOrigin = new Vector2(
+            character.enemyTransform.position.x,
+            character.enemyTransform.position.y
+        );
 
-        HitObject1 = Physics2D.Raycast(RayOrigin1, RayDirection1, RayDistance1, enemy.RayLayer);
-        HitObject2 = Physics2D.Raycast(RayOrigin2, RayDirection2, RayDistance2, enemy.RayLayer);
+        groundHit = Physics2D.Raycast(groundRayOrigin, groundRayDirection, groundRayDistance, character.RayLayer);
+        wallHit = Physics2D.Raycast(wallRayOrigin, wallRayDirection * (character.IsFacingRight ? 1 : -1), wallRayDistance, character.RayLayer);
 
-        if (HitObject1.collider == null || HitObject2.collider != null)
+        Debug.DrawLine(groundRayOrigin, groundRayOrigin + groundRayDirection * groundRayDistance, Color.red);
+        Debug.DrawLine(wallRayOrigin, wallRayOrigin + wallRayDirection * wallRayDistance, Color.blue);
+
+        if (groundHit.collider == null || wallHit.collider != null)
         {
-            ShouldStopMove = true;
+            shouldStopMove = true;
+        }
+        else
+        {
+            shouldStopMove = false;
+        }
+
+        if (shouldStopMove && !isWaiting)
+        {
+            character.StartCoroutine(WaitAndFlip());
+        }
+        else if (!shouldStopMove && !isWaiting)
+        {
+            character.enemyRigidbody.velocity = new Vector2(character.moveSpeed * (character.IsFacingRight ? 1 : -1), character.enemyRigidbody.velocity.y);
         }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    private IEnumerator WaitAndFlip()
+    {
+        isWaiting = true;
+        character.enemyRigidbody.velocity = Vector2.zero;
+        yield return new WaitForSeconds(character.patrolStopTime);
+        character.Flip();
+        isWaiting = false;
+
+        // Ensure the enemy starts moving again after flipping
+        character.enemyRigidbody.velocity = new Vector2(character.moveSpeed * (character.IsFacingRight ? 1 : -1), character.enemyRigidbody.velocity.y);
+    }
+
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            character.stateMachine.ChangeState(character.enemyChaseState);
+        }
     }
 }

@@ -19,7 +19,7 @@ public class GhostWarriorController : MonoBehaviour
     [SerializeField] float detect_range = 5 ;
     [SerializeField] LayerMask player_layer;
 
-    bool is_facing_right = true;
+    public bool is_facing_right = true;
     bool is_patrolling = true ;
     bool is_chasing = false ;
     bool is_attacking = false ;

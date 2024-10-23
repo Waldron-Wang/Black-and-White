@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -8,11 +9,11 @@ public abstract class AbstractState<T> where T : MonoBehaviour
     protected T character;
     protected Player player
     {
-        get { return character as Player;}
+        get { return character as Player; }
     }
     protected Enemy enemy
     {
-        get { return character as Enemy;}
+        get { return character as Enemy; }
     }
     protected StateMachine<T> characterStateMachine;
 
@@ -22,9 +23,12 @@ public abstract class AbstractState<T> where T : MonoBehaviour
         this.characterStateMachine = characterStateMachine;
     }
 
-    public virtual void EnterState() {}
-    public virtual void ExitState() {}
-    public virtual void FrameUpdate() {}
-    public virtual void PhysicsUpdate() {}
-    public virtual void AnimationTriggerEvent(Player.AnimationTriggerType triggerType) {}
+    public virtual void EnterState() { }
+    public virtual void ExitState() { }
+    public virtual void FrameUpdate() { }
+    public virtual void PhysicsUpdate() { }
+    public virtual void OnTriggerEnter2D(Collider2D other) { }
+    public virtual void OnTriggerStay2D(Collider2D other) { }
+    public virtual void OnTriggerExit2D(Collider2D other) { }
+    public virtual void AnimationTriggerEvent(Player.AnimationTriggerType triggerType) { }
 }
