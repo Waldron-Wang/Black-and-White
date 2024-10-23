@@ -110,7 +110,7 @@ public class PlayerJumpState : AbstractState<Player>
                 break;
             case 2:
                 player.PlayerRigidbody.velocity = new Vector3(player.PlayerRigidbody.velocity.x, 0f, 0f);
-                player.PlayerRigidbody.AddForce(new Vector3(0f, player.SecondJumoForce, 0f), ForceMode2D.Impulse);
+                player.PlayerRigidbody.AddForce(new Vector3(0f, player.SecondJumpForce, 0f), ForceMode2D.Impulse);
                 player.VerticalMoveInput = false;
                 break;
         }

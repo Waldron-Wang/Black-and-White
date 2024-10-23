@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttackState : AbstractState<Player>
 {
-    bool IsStateEnd;
+    private bool isStateEnd;
 
     public PlayerAttackState(Player player, StateMachine<Player> characterStateMachine) : base(player, characterStateMachine)
     {
@@ -14,7 +14,7 @@ public class PlayerAttackState : AbstractState<Player>
     {
         base.EnterState();
 
-        IsStateEnd = false;
+        isStateEnd = false;
         player.is_attacking = true;
         player.attack_input = false;
         player.attack_first_input = false;
@@ -39,6 +39,13 @@ public class PlayerAttackState : AbstractState<Player>
                 player.ChangeAnimationState(Player.AnimationAttack3);
                 Debug.Log("Enter third attack state");
                 break;
+
+            default:
+                player.attack_count = 1;
+                player.BeginCheckAttackInput();
+                player.ChangeAnimationState(Player.AnimationAttack1);
+                Debug.Log("Reset to first attack state");
+                break;
         }
     }
 
@@ -53,51 +60,50 @@ public class PlayerAttackState : AbstractState<Player>
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        Debug.Log("attack count: " + player.attack_count);
-        Debug.Log("attack input: " + player.attack_input);
-        Debug.Log("is checking attack input: " + player.is_checking_attack_input);
 
         switch (player.attack_count)
         {
             case 1:
                 if (!player.IsAnimationPlaying(Player.AnimationAttack1))
                 {
-                    IsStateEnd = true;
-                    Debug.Log("Is state end 1: " + IsStateEnd);
+                    isStateEnd = true;
                 }
                 break;
             case 2:
                 if (!player.IsAnimationPlaying(Player.AnimationAttack2))
                 {
-                    IsStateEnd = true;
-                    Debug.Log("Is state end 2: " + IsStateEnd);
+                    isStateEnd = true;
                 }
                 break;
             case 3:
                 if (!player.IsAnimationPlaying(Player.AnimationAttack3))
                 {
-                    IsStateEnd = true;
-                    Debug.Log("Is state end 3: " + IsStateEnd);
+                    player.attack_input=false;
+                    isStateEnd = true;
                 }
                 break;
         }
 
-        if (IsStateEnd)
+        if (isStateEnd)
         {
-            // switch to Idle state
-            if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
+            if (player.attack_input)
             {
-                characterStateMachine.ChangeState(player.IdleState);
-
-                player.ChangeAnimationState(Player.AnimationIdle);
+                player.attack_input = false;
+                characterStateMachine.ChangeState(player.AttackState);
             }
-
-            // switch to run state
-            if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
+            else
             {
-                characterStateMachine.ChangeState(player.RunState);
-
-                player.ChangeAnimationState(Player.AnimationRun);
+                player.attack_count = 0;
+                if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
+                {
+                    characterStateMachine.ChangeState(player.IdleState);
+                    player.ChangeAnimationState(Player.AnimationIdle);
+                }
+                else
+                {
+                    characterStateMachine.ChangeState(player.RunState);
+                    player.ChangeAnimationState(Player.AnimationRun);
+                }
             }
         }
     }

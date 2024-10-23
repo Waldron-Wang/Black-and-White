@@ -734,6 +734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Balck
       objectReference: {fileID: 0}
+    - target: {fileID: 7443049634835099596, guid: 2766eef8cb78a48f09984d0403d2690e, type: 3}
+      propertyPath: SecondJumpForce
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -136636,6 +136640,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.016798317
       objectReference: {fileID: 0}
+    - target: {fileID: -315406887696032172, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 416367153036533895, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
       propertyPath: m_Name
       value: ghost_warrior
@@ -136647,6 +136655,14 @@ PrefabInstance:
     - target: {fileID: 416367153036533895, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096856751544860101, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096856751544860101, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4615961142668613293, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
       propertyPath: m_SortingLayer
@@ -136670,11 +136686,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7880403937347096309, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 7880403937347096309, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.687
+      value: -0.64
       objectReference: {fileID: 0}
     - target: {fileID: 7880403937347096309, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -136711,7 +136727,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 416367153036533895, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1699254700}
   m_SourcePrefab: {fileID: 100100000, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
 --- !u!1001 &1693293315
 PrefabInstance:
@@ -136782,6 +136801,43 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3cca2a8c06c563459c8d13279138207, type: 3}
+--- !u!1 &1699254693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 416367153036533895, guid: 1311ee3a761f66a4cb644b8715d9a6a7, type: 3}
+  m_PrefabInstance: {fileID: 1691617483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1699254700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699254693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4cf7e858ea345ffa811d4c7967d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRigidbody: {fileID: 0}
+  enemyTransform: {fileID: 0}
+  enemySpriteRenderer: {fileID: 0}
+  enemyAnimator: {fileID: 0}
+  RayLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  health: 0
+  moveSpeed: 1
+  patrolStopTime: 3
+  IsFacingRight: 0
+  chaseSpeed: 2.5
+  attackDistance: 1
+  losePlayerTime: 2
+  currentEnemyStateName: 
+  enemyPatrolAnimation: 
+  enemyChaseAnimation: 
+  enemyAttackAnimation1: 
+  enemyAttackAnimation2: 
+  enemyAttackAnimation3: 
 --- !u!1001 &1699345391
 PrefabInstance:
   m_ObjectHideFlags: 0

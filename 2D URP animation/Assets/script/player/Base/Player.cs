@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float RunSpeed;
     public float WalkSpeed;
     public float FirstJumpForce;
-    public float SecondJumoForce;
+    public float SecondJumpForce;
     public float AirDrag;
     public float DodgeTime;
     public float DodgeCoolTime;
@@ -356,19 +356,16 @@ public class Player : MonoBehaviour
     }
 
     public void BeginCheckAttackInput()
-    //call this method at the first frame of attack animation
     {
         is_checking_attack_input = true;
     }
 
     public IEnumerator EndCheckAttackInput()
-    //call this method at the last frame of attack animation
     {
         if (!attack_input)
         {
             yield return StartCoroutine(WaitOrInterruptAttack(attack_waiting_time));
         }
-        //Debug.Log("end");
         is_checking_attack_input = false;
     }
 
@@ -378,7 +375,6 @@ public class Player : MonoBehaviour
         while (elapsed_time < waitTime && !attack_input && attack_count != 3)
         {
             yield return null;
-            //暂停协程，到下一帧再运行
             elapsed_time += Time.deltaTime;
         }
     }
