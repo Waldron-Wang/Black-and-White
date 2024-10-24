@@ -29,6 +29,7 @@ public class EnemyPatrolState : AbstractState<Enemy>
     public override void EnterState()
     {
         base.EnterState();
+        character.ChangeAnimationState(Enemy.enemyIdleAnimation);
     }
 
     public override void ExitState()

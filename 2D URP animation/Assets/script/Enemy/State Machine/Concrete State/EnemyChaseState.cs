@@ -17,6 +17,7 @@ public class EnemyChaseState : AbstractState<Enemy>
         base.EnterState();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         losePlayerTimer = 0.0f;
+        character.ChangeAnimationState(Enemy.enemyChaseAnimation);
     }
 
     public override void FrameUpdate()
@@ -33,14 +34,13 @@ public class EnemyChaseState : AbstractState<Enemy>
 
         if (distanceToPlayer <= character.attackDistance)
         {
-            // Switch to attack state (not implemented here)
-            // characterStateMachine.ChangeState(character.enemyAttackState);
+            // character.stateMachine.ChangeState(character.enemyAttackState);
             return;
         }
 
         if (losePlayerTimer >= character.losePlayerTime)
         {
-            characterStateMachine.ChangeState(character.enemyPatrolState);
+            character.stateMachine.ChangeState(character.enemyPatrolState);
             return;
         }
 

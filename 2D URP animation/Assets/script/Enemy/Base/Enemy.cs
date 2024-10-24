@@ -19,11 +19,13 @@ public class Enemy : MonoBehaviour
     public float losePlayerTime;
 
     [HideInInspector] public string currentEnemyStateName;
-    [HideInInspector] public string enemyPatrolAnimation;
-    [HideInInspector] public string enemyChaseAnimation;
-    [HideInInspector] public string enemyAttackAnimation1;
-    [HideInInspector] public string enemyAttackAnimation2;
-    [HideInInspector] public string enemyAttackAnimation3;
+    [HideInInspector] public const string enemyIdleAnimation = "idle";
+    [HideInInspector] public const string enemyChaseAnimation = "move";
+    [HideInInspector] public const string enemyAttackAnimation1 = "attack_1";
+    [HideInInspector] public const string enemyAttackAnimation2 = "attack_2";
+    [HideInInspector] public const string enemyAttackAnimation3 = "attack_3";
+    [HideInInspector] public const string enemyHurtAnimation = "get_hit";
+    [HideInInspector] public const string enemyDeathAnimation = "death";
 
     [HideInInspector] public StateMachine<Enemy> stateMachine { get; set; }
     [HideInInspector] public EnemyPatrolState enemyPatrolState { get; set; }

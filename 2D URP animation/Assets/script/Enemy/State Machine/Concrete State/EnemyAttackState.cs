@@ -53,8 +53,8 @@ public class EnemyAttackState : AbstractState<Enemy>
 
     private IEnumerator PerformAttack()
     {
-        string attackAnimation = "Attack" + currentAttackIndex;
-        character.enemyAnimator.Play(attackAnimation);
+        string attackAnimation = "enemyAttackAnimation" + currentAttackIndex;
+        character.ChangeAnimationState(attackAnimation);
 
         yield return new WaitForSeconds(character.enemyAnimator.GetCurrentAnimatorStateInfo(0).length);
 
