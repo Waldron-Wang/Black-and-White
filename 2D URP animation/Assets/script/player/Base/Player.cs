@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D PlayerRigidbody;
-    public Transform PlayerTransform;
+    public Rigidbody2D playerRigidbody;
+    public Transform playerTransform;
 
     #region Controller Variable
 
@@ -18,8 +18,6 @@ public class Player : MonoBehaviour
     public float DodgeCoolTime;
     public float DodgeForce;
     public float DodgeGravity;
-    public float attack_waiting_time;
-    //3连击之间的等待时间，超过该时间后再次攻击，则从第一段攻击重新开始。
     public float ClimbSpeed;
 
     #endregion
@@ -42,18 +40,15 @@ public class Player : MonoBehaviour
     [HideInInspector] public int MaxJumpCount;
     //[HideInInspector] public int AirState;
     //记录当前跳跃状态，0为未跳跃，1为上升，2为下降，3为即将落地
-    [HideInInspector] public int attack_count;
+    [HideInInspector] public int currentAttackIndex;
     [HideInInspector] public bool IsFacingRight;
     [HideInInspector] public bool IsFalling;
     [HideInInspector] public bool IsGround;
     [HideInInspector] public bool IsDodging;
     [HideInInspector] public bool CanDodge;
     [HideInInspector] public bool DodgeInput;
-    [HideInInspector] public bool is_attacking;
+    [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool attack_first_input;
-    [HideInInspector] public bool attack_input;
-    [HideInInspector] public bool is_checking_attack_input;
-    [HideInInspector] public bool is_attacking_end;
     [HideInInspector] public bool CanClimb;
     [HideInInspector] public bool isClimbing;
 
@@ -90,8 +85,8 @@ public class Player : MonoBehaviour
 
     #region Animation Variable
 
-    [HideInInspector] public Animator PlayerAnimator;
-    [HideInInspector] public string CurrentPlayerStateName;
+    [HideInInspector] public Animator playerAnimator;
+    [HideInInspector] public string currentPlayerStateName;
     [HideInInspector] public const string AnimationIdle = "idle";
     [HideInInspector] public const string AnimationRun = "run";
     [HideInInspector] public const string AnimationWalk = "walk";
@@ -123,6 +118,8 @@ public class Player : MonoBehaviour
         DodgeState = new PlayerDodgeState(this, StateMachine);
         AttackState = new PlayerAttackState(this, StateMachine);
         ClimbState = new PlayerClimbState(this, StateMachine);
+
+        StateMachine.InitializeState(IdleState);
     }
 
     #endregion
@@ -131,11 +128,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        StateMachine.InitializeState(IdleState);
-
-        PlayerRigidbody = GetComponent<Rigidbody2D>();
-        PlayerAnimator = GetComponent<Animator>();
-        PlayerTransform = GetComponent<Transform>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
+        playerTransform = GetComponent<Transform>();
 
         DodgeCoolTimer = DodgeCoolTime;
 
@@ -150,13 +145,10 @@ public class Player : MonoBehaviour
         CanDodge = true;
         DodgeInput = false;
         attack_first_input = false;
-        attack_input = false;
-        is_attacking = false;
-        is_checking_attack_input = true;
-        is_attacking_end = false;
+        isAttacking = false;
         JumpCount = 0;
         MaxJumpCount = 2;
-        attack_count = 0;
+        currentAttackIndex = 0;
 
         RayDirection = Vector2.down;
     }
@@ -175,7 +167,7 @@ public class Player : MonoBehaviour
         RayOrigin = new Vector2(transform.position.x, transform.position.y);
 
         // check is falling
-        if (PlayerRigidbody.velocity.y < 0f && !IsGround)
+        if (playerRigidbody.velocity.y < 0f && !IsGround)
         {
             HitObject = Physics2D.Raycast(RayOrigin, RayDirection, RayDistance, RayLayer);
             if (HitObject.collider == null)
@@ -213,11 +205,11 @@ public class Player : MonoBehaviour
         CheckAttackInput();
 
         // check is attack end
-        if (is_attacking_end)
-        {
-            is_attacking_end = false;
-            StartCoroutine(EndCheckAttackInput());
-        }
+        // if (is_attacking_end)
+        // {
+        //     is_attacking_end = false;
+        //     StartCoroutine(EndCheckAttackInput());
+        // }
 
 
 
@@ -235,17 +227,6 @@ public class Player : MonoBehaviour
 
         StateMachine.CurrentPlayerState.FrameUpdate();
 
-        // check attack state
-        if (!attack_input && !is_checking_attack_input)
-        {
-            attack_count = 0;
-            is_attacking = false;
-        }
-        else if (attack_count == 3 && !is_attacking)
-        {
-            attack_count = 0;
-            is_attacking = false;
-        }
     }
 
     #endregion
@@ -277,19 +258,19 @@ public class Player : MonoBehaviour
     public void ChangeAnimationState(string new_state, float start_time = 0f)
     //播放动画，第一个参数是要播放的动画名称对应的字符串，第二个参数是0到1的float变量，控制动画的播放的起始标准时间，默认为0
     {
-        if (new_state == CurrentPlayerStateName)
+        if (new_state == currentPlayerStateName)
         {
             return;
         }
 
-        PlayerAnimator.Play(new_state, 0, start_time);
-        CurrentPlayerStateName = new_state;
+        playerAnimator.Play(new_state, 0, start_time);
+        currentPlayerStateName = new_state;
     }
 
     public bool IsAnimationPlaying(string state_name, float exit_time = 1.0f)
     //检查动画是否正在播放，第二个参数是0到1的float变量，规定了播放完成的终止标准时间，默认为1，
     {
-        if (PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName(state_name) && PlayerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < exit_time)
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(state_name) && playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < exit_time)
         {
             return true;
         }
@@ -346,36 +327,9 @@ public class Player : MonoBehaviour
 
     void CheckAttackInput()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetButtonDown("Attack") && currentAttackIndex ==0)
         {
-            if (attack_count == 0)
-                attack_first_input = true;
-            else if (is_checking_attack_input)
-                attack_input = true;
-        }
-    }
-
-    public void BeginCheckAttackInput()
-    {
-        is_checking_attack_input = true;
-    }
-
-    public IEnumerator EndCheckAttackInput()
-    {
-        if (!attack_input)
-        {
-            yield return StartCoroutine(WaitOrInterruptAttack(attack_waiting_time));
-        }
-        is_checking_attack_input = false;
-    }
-
-    public IEnumerator WaitOrInterruptAttack(float waitTime)
-    {
-        float elapsed_time = 0.0f;
-        while (elapsed_time < waitTime && !attack_input && attack_count != 3)
-        {
-            yield return null;
-            elapsed_time += Time.deltaTime;
+            attack_first_input = true;
         }
     }
 

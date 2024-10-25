@@ -60,7 +60,7 @@ public class PlayerRunState : AbstractState<Player>
         }
 
         // switch to Attack state
-        if (player.attack_first_input || player.attack_input)
+        if (player.attack_first_input || GameManager.gameManager.IsAttackInputDetected())
         {
             characterStateMachine.ChangeState(player.AttackState);
         }
@@ -71,9 +71,9 @@ public class PlayerRunState : AbstractState<Player>
         base.PhysicsUpdate();
 
         if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
-            player.PlayerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed, player.PlayerRigidbody.velocity.y, 0f);
+            player.playerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed, player.playerRigidbody.velocity.y, 0f);
         else
-            player.PlayerRigidbody.velocity = new Vector3(0f, player.PlayerRigidbody.velocity.y, 0f);
+            player.playerRigidbody.velocity = new Vector3(0f, player.playerRigidbody.velocity.y, 0f);
     }
 
 }

@@ -60,7 +60,7 @@ public class PlayerIdleState : AbstractState<Player>
         }
 
         // switch to Attack state
-        if (player.attack_first_input || player.attack_input)
+        if (player.attack_first_input || GameManager.gameManager.IsAttackInputDetected())
         {
             characterStateMachine.ChangeState(player.AttackState);
         }

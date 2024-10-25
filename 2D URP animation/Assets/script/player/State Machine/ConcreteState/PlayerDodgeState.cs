@@ -21,8 +21,8 @@ public class PlayerDodgeState : AbstractState<Player>
         player.CanDodge = false;
         player.DodgeInput = false;
         player.IsDodging = true;
-        original_gravity = player.PlayerRigidbody.gravityScale;
-        player.PlayerRigidbody.gravityScale = player.DodgeGravity;
+        original_gravity = player.playerRigidbody.gravityScale;
+        player.playerRigidbody.gravityScale = player.DodgeGravity;
     }
 
     public override void ExitState()
@@ -30,8 +30,8 @@ public class PlayerDodgeState : AbstractState<Player>
         base.ExitState();
 
         player.IsDodging = false;
-        player.PlayerRigidbody.velocity = new Vector3(0f, 0f, 0f);
-        player.PlayerRigidbody.gravityScale = original_gravity;
+        player.playerRigidbody.velocity = new Vector3(0f, 0f, 0f);
+        player.playerRigidbody.gravityScale = original_gravity;
 
         player.beginDodgeCoolTimer = true;
     }
@@ -78,7 +78,7 @@ public class PlayerDodgeState : AbstractState<Player>
         base.PhysicsUpdate();
 
         if (DodgeTimer > 0)
-            player.PlayerRigidbody.velocity = new Vector3(player.PlayerTransform.right.x * player.DodgeForce, 0f, 0f);
+            player.playerRigidbody.velocity = new Vector3(player.playerTransform.right.x * player.DodgeForce, 0f, 0f);
     }
 
 }

@@ -87,16 +87,16 @@ public class PlayerJumpState : AbstractState<Player>
         if (IsChangeDirection)
         {
             if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
-                player.PlayerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed * (1 - player.AirDrag), player.PlayerRigidbody.velocity.y, 0f);
+                player.playerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed * (1 - player.AirDrag), player.playerRigidbody.velocity.y, 0f);
             else
-                player.PlayerRigidbody.velocity = new Vector3(0f, player.PlayerRigidbody.velocity.y, 0f);
+                player.playerRigidbody.velocity = new Vector3(0f, player.playerRigidbody.velocity.y, 0f);
         }
         else
         {
             if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
-                player.PlayerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed, player.PlayerRigidbody.velocity.y, 0f);
+                player.playerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed, player.playerRigidbody.velocity.y, 0f);
             else
-                player.PlayerRigidbody.velocity = new Vector3(0f, player.PlayerRigidbody.velocity.y, 0f);
+                player.playerRigidbody.velocity = new Vector3(0f, player.playerRigidbody.velocity.y, 0f);
         }
     }
 
@@ -105,12 +105,12 @@ public class PlayerJumpState : AbstractState<Player>
         switch (player.JumpCount)
         {
             case 1:
-                player.PlayerRigidbody.AddForce(new Vector3(0f, player.FirstJumpForce, 0f), ForceMode2D.Impulse);
+                player.playerRigidbody.AddForce(new Vector3(0f, player.FirstJumpForce, 0f), ForceMode2D.Impulse);
                 player.VerticalMoveInput = false;
                 break;
             case 2:
-                player.PlayerRigidbody.velocity = new Vector3(player.PlayerRigidbody.velocity.x, 0f, 0f);
-                player.PlayerRigidbody.AddForce(new Vector3(0f, player.SecondJumpForce, 0f), ForceMode2D.Impulse);
+                player.playerRigidbody.velocity = new Vector3(player.playerRigidbody.velocity.x, 0f, 0f);
+                player.playerRigidbody.AddForce(new Vector3(0f, player.SecondJumpForce, 0f), ForceMode2D.Impulse);
                 player.VerticalMoveInput = false;
                 break;
         }

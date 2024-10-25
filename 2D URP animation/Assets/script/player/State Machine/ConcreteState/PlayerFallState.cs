@@ -47,7 +47,7 @@ public class PlayerFallState : AbstractState<Player>
             return;
 
         // switch to Idle or Run state
-        if (player.PlayerRigidbody.velocity.x > 0.1f || player.PlayerRigidbody.velocity.x < -0.1f)
+        if (player.playerRigidbody.velocity.x > 0.1f || player.playerRigidbody.velocity.x < -0.1f)
         {
             player.StateMachine.ChangeState(player.RunState);
 
@@ -66,8 +66,8 @@ public class PlayerFallState : AbstractState<Player>
         base.PhysicsUpdate();
 
         if (player.HorizontalMoveInput > 0.1f || player.HorizontalMoveInput < -0.1f)
-            player.PlayerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed * (1 - player.AirDrag), player.PlayerRigidbody.velocity.y, 0f);
+            player.playerRigidbody.velocity = new Vector3(player.HorizontalMoveInput * player.RunSpeed * (1 - player.AirDrag), player.playerRigidbody.velocity.y, 0f);
         else
-            player.PlayerRigidbody.velocity = new Vector3(0f, player.PlayerRigidbody.velocity.y, 0f);
+            player.playerRigidbody.velocity = new Vector3(0f, player.playerRigidbody.velocity.y, 0f);
     }
 }

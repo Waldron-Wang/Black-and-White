@@ -1,115 +1,75 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackState : AbstractState<Player>
 {
-    private bool isStateEnd;
-
-    public PlayerAttackState(Player player, StateMachine<Player> characterStateMachine) : base(player, characterStateMachine)
+    public PlayerAttackState(Player character, StateMachine<Player> characterStateMachine) : base(character, characterStateMachine)
     {
     }
 
     public override void EnterState()
     {
         base.EnterState();
-
-        isStateEnd = false;
-        player.is_attacking = true;
-        player.attack_input = false;
-        player.attack_first_input = false;
-        player.attack_count++;
-
-        switch (player.attack_count)
-        {
-            case 1:
-                player.BeginCheckAttackInput();
-                player.ChangeAnimationState(Player.AnimationAttack1);
-                Debug.Log("Enter first attack state");
-                break;
-
-            case 2:
-                player.BeginCheckAttackInput();
-                player.ChangeAnimationState(Player.AnimationAttack2);
-                Debug.Log("Enter second attack state");
-                break;
-
-            case 3:
-                player.BeginCheckAttackInput();
-                player.ChangeAnimationState(Player.AnimationAttack3);
-                Debug.Log("Enter third attack state");
-                break;
-
-            default:
-                player.attack_count = 1;
-                player.BeginCheckAttackInput();
-                player.ChangeAnimationState(Player.AnimationAttack1);
-                Debug.Log("Reset to first attack state");
-                break;
-        }
-    }
-
-    public override void ExitState()
-    {
-        base.ExitState();
-
-        player.is_attacking_end = true;
-        player.is_attacking = false;
+        Debug.Log("Enter Attack State " + player.currentAttackIndex);
+        
+        player.isAttacking = false;
+        StartAttack();
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
 
-        switch (player.attack_count)
-        {
-            case 1:
-                if (!player.IsAnimationPlaying(Player.AnimationAttack1))
-                {
-                    isStateEnd = true;
-                }
-                break;
-            case 2:
-                if (!player.IsAnimationPlaying(Player.AnimationAttack2))
-                {
-                    isStateEnd = true;
-                }
-                break;
-            case 3:
-                if (!player.IsAnimationPlaying(Player.AnimationAttack3))
-                {
-                    player.attack_input=false;
-                    isStateEnd = true;
-                }
-                break;
-        }
+        // if (!player.isAttacking && GameManager.gameManager.IsAttackInputDetected())
+        // {
+        //     StartAttack();
+        // }
 
-        if (isStateEnd)
+        // switch to other state
+        if (!player.isAttacking && !GameManager.gameManager.IsAttackInputDetected())
         {
-            if (player.attack_input)
+            // switch to Idle state
+            if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
             {
-                player.attack_input = false;
-                characterStateMachine.ChangeState(player.AttackState);
-            }
-            else
-            {
-                player.attack_count = 0;
-                if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
-                {
-                    characterStateMachine.ChangeState(player.IdleState);
-                    player.ChangeAnimationState(Player.AnimationIdle);
-                }
-                else
-                {
-                    characterStateMachine.ChangeState(player.RunState);
-                    player.ChangeAnimationState(Player.AnimationRun);
-                }
+                characterStateMachine.ChangeState(player.IdleState);
+
+                player.ChangeAnimationState(Player.AnimationIdle);
             }
         }
     }
 
-    public override void PhysicsUpdate()
+    private void StartAttack()
     {
-        base.PhysicsUpdate();
+        player.isAttacking = true;
+        player.currentAttackIndex++;
+        character.StartCoroutine(PerformAttack());
+
+        Debug.Log("Attack is performed");
+    }
+
+    private IEnumerator PerformAttack()
+    {
+        string attackAnimation = "attack_" + player.currentAttackIndex;
+        character.ChangeAnimationState(attackAnimation);
+
+        float animationLength = character.playerAnimator.GetCurrentAnimatorStateInfo(0).length;
+        float detectionWindow = animationLength + 0.5f; // Detection window for the next attack
+
+        GameManager.gameManager.StartDetectionWindow(detectionWindow);
+
+        yield return new WaitForSeconds(animationLength);
+
+        player.isAttacking = false;
+
+        if (player.currentAttackIndex >= 3)
+        {
+            player.currentAttackIndex = 0; // Reset combo after third attack
+        }
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        player.isAttacking = false;
     }
 }
