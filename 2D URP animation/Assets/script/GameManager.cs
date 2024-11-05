@@ -31,12 +31,13 @@ public class GameManager : MonoBehaviour
         {
             isDetectionWindowActive = false;
             isAttackInputDetected = false;
-            Debug.Log("Detection window is not active");
+            Debug.Log("Detection window closed!");
         }
 
         if (isDetectionWindowActive && Input.GetButtonDown("Attack"))
         {
             isAttackInputDetected = true;
+            StopDetectionWindow();
             Debug.Log("Attack input detected");
         }
     }
@@ -46,12 +47,27 @@ public class GameManager : MonoBehaviour
         isDetectionWindowActive = true;
         detectionWindowEndTime = Time.time + duration;
         isAttackInputDetected = false;
-        Debug.Log("Detection window is active");
+        Debug.Log("Detection window open!");
+    }
+
+    public void StopDetectionWindow()
+    {
+        if (isDetectionWindowActive)
+        {
+            isDetectionWindowActive = false;
+            isAttackInputDetected = false;
+            Debug.Log("Detection window manually closed!");
+        }
     }
 
     public bool IsAttackInputDetected()
     {
-        Debug.Log("Attack input: " + isAttackInputDetected);
         return isAttackInputDetected;
+    }
+
+    // Added method to check if Detection Window is active
+    public bool IsDetectionWindowActive()
+    {
+        return isDetectionWindowActive;
     }
 }

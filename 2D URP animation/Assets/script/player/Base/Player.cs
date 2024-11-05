@@ -333,5 +333,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ResetCurrentAttackIndex()
+    {
+        currentAttackIndex = 0;
+    }
+
     #endregion
 }

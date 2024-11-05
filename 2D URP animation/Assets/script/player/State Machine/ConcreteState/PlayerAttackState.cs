@@ -11,7 +11,7 @@ public class PlayerAttackState : AbstractState<Player>
     {
         base.EnterState();
         Debug.Log("Enter Attack State " + player.currentAttackIndex);
-        
+
         player.isAttacking = false;
         StartAttack();
     }
@@ -20,31 +20,19 @@ public class PlayerAttackState : AbstractState<Player>
     {
         base.FrameUpdate();
 
-        // if (!player.isAttacking && GameManager.gameManager.IsAttackInputDetected())
-        // {
-        //     StartAttack();
-        // }
-
-        // switch to other state
+        // If the player is not attacking and no attack input is detected, switch to Idle state
         if (!player.isAttacking && !GameManager.gameManager.IsAttackInputDetected())
         {
-            // switch to Idle state
-            if (player.HorizontalMoveInput < 0.1f && player.HorizontalMoveInput > -0.1f)
-            {
-                characterStateMachine.ChangeState(player.IdleState);
-
-                player.ChangeAnimationState(Player.AnimationIdle);
-            }
+            characterStateMachine.ChangeState(player.IdleState);
+            player.ChangeAnimationState(Player.AnimationIdle);
         }
     }
 
     private void StartAttack()
     {
         player.isAttacking = true;
-        player.currentAttackIndex++;
         character.StartCoroutine(PerformAttack());
-
-        Debug.Log("Attack is performed");
+        Debug.Log("Attack " + player.currentAttackIndex + " Start"); 
     }
 
     private IEnumerator PerformAttack()
@@ -57,13 +45,26 @@ public class PlayerAttackState : AbstractState<Player>
 
         GameManager.gameManager.StartDetectionWindow(detectionWindow);
 
-        yield return new WaitForSeconds(animationLength);
+        // Wait until the detection window is closed
+        yield return new WaitUntil(() => !GameManager.gameManager.IsDetectionWindowActive());
 
         player.isAttacking = false;
 
-        if (player.currentAttackIndex >= 3)
+        if (GameManager.gameManager.IsAttackInputDetected())
         {
-            player.currentAttackIndex = 0; // Reset combo after third attack
+            player.currentAttackIndex++;
+            if (player.currentAttackIndex >= 3)
+            {
+                player.currentAttackIndex = 0; // Reset combo after third attack
+            }
+            Debug.Log("Attack input detected. Switching to Attack State with index " + player.currentAttackIndex);
+            characterStateMachine.ChangeState(player.AttackState);
+        }
+        else
+        {
+            Debug.Log("No attack input detected. Resetting attack index and switching to Idle State.");
+            player.currentAttackIndex = 0;
+            characterStateMachine.ChangeState(player.IdleState);
         }
     }
 
@@ -71,5 +72,6 @@ public class PlayerAttackState : AbstractState<Player>
     {
         base.ExitState();
         player.isAttacking = false;
+        // Removed resetting currentAttackIndex here to maintain combo sequence
     }
 }
